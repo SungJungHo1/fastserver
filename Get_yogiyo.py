@@ -160,8 +160,8 @@ if __name__ == "__main__":
 
     # delivery_fee = 3000
     datas = Push_Message("U812329a68632f4237dea561c6ba1d413",
-                         '크턱', 3000, orderdata, cart2, 1010100, 10101010)
-    print(datas["messages"])
+                         '크턱', 3000, orderdata, cart2, 1010100, 10101010, 3000)
+    print(datas)
     # print(data)
     # print(get_Menu(351360))
     # print(data)
