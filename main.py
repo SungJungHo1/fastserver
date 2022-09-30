@@ -16,9 +16,9 @@ app.add_middleware(
 
 
 @app.get('/getStores')
-async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514'):
+async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514', own_delivery_only='false'):
 
-    data = get_Yogiyo(category, latitude, longitude)
+    data = get_Yogiyo(category, latitude, longitude, own_delivery_only)
 
     return data
 

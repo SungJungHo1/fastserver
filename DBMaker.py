@@ -3,6 +3,7 @@ from Ordersdatas import *
 from datetime import *
 from random import *
 from datetime import datetime, timedelta, timezone
+import uuid
 
 client = MongoClient('mongodb://fastfood:fastfood@43.200.202.12', 27017)
 
@@ -14,10 +15,8 @@ service = mydb['service']
 
 
 def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money):
-    z = randrange(0, 900)
-    Order_Code = str(datetime.now().hour) + str(datetime.now().month) + str(datetime.now().year) + \
-        str(datetime.now().day) + \
-        str(int(datetime.now().microsecond / 1000)) + str(z)[-1]
+
+    Order_Code = uuid.uuid1()
 
     timezone_kst = timezone(timedelta(hours=9))
     datetime_utc2 = datetime.now(timezone_kst)
@@ -103,7 +102,9 @@ if __name__ == "__main__":
     # x = errcol.find()
     # for i in x:
     #     print(i)
-    Insert_service()
+    # Insert_service()
+    Order_Code = uuid.uuid1()
+    # print(Order_Code)
     # print(find_service())
     # Insert_cust("크턱", "010-6675-5961")
     # find_Allcust()
