@@ -16,7 +16,7 @@ service = mydb['service']
 
 def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money):
 
-    Order_Code = uuid.uuid1()
+    Order_Code = uuid.uuid1().int
 
     timezone_kst = timezone(timedelta(hours=9))
     datetime_utc2 = datetime.now(timezone_kst)
@@ -104,6 +104,7 @@ if __name__ == "__main__":
     #     print(i)
     # Insert_service()
     Order_Code = uuid.uuid1()
+    print(type(Order_Code.int))
     # print(Order_Code)
     # print(find_service())
     # Insert_cust("크턱", "010-6675-5961")
