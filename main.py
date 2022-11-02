@@ -51,7 +51,7 @@ def Searchs(keyword="피자", page="0", latitude="37.5347556106622", longitude="
 
 
 @app.get('/popularMenu')
-def popularMenu(latitude="36.969655961906", longitude="127.244958777736"):
+def popularMenu(latitude="37.5347556106622", longitude="127.114906298514"):
 
     data = Find_Top(latitude, longitude)
 
