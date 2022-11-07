@@ -77,9 +77,7 @@ def UpLoad_IMG(img: UploadFile, Order_Code):
 @app.get('/service')
 def Get_service():
     data = find_service()
-
-    return str(data)
-
+    return {"Money":data['Money'],"opened":data['opened'],"ment":data['ment']}
 
 @app.post('/LogErr')
 def LogErr(Errors=Form(...)):

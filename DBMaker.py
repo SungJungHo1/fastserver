@@ -64,14 +64,15 @@ def Insert_service():
     format = '%Y-%m-%d %H:%M:%S'
     str_datetime = datetime.strftime(datetime_utc2, format)
 
-    service.insert_one({"Money": 1000, "Time": str(str_datetime)})
+    # service.insert_one({"Money": 3000,"ment":"วันนี้หยุดบริการ 1 วัน 🙏\nเปิดบริการอีกทีในวันพรุ่งนี้ค่ะ🙏\nขอบคุณที่ใช้บริการFASTFOODนะคะ","opened":False, "Time": str(str_datetime)})
+    service.insert_one({"Money": 3000,"ment":"Test Ment","opened":True, "Time": str(str_datetime)})
 
 
 def find_service():
 
     DBs = service.find().sort("_id", -1)
 
-    return DBs[0]["Money"]
+    return DBs[0]
 
 
 def Insert_Err(Errors):
@@ -102,10 +103,11 @@ if __name__ == "__main__":
     # x = errcol.find()
     # for i in x:
     #     print(i)
-    # Insert_service()
-    Order_Code = shortuuid.uuid()
-    print(Order_Code)
-    print(type(Order_Code))
+    Insert_service()
+    print(find_service())
+    # Order_Code = shortuuid.uuid()
+    # print(Order_Code)
+    # print(type(Order_Code))
     # print(find_service())
     # Insert_cust("크턱", "010-6675-5961")
     # find_Allcust()
