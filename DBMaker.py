@@ -65,7 +65,7 @@ def Insert_service():
     str_datetime = datetime.strftime(datetime_utc2, format)
 
     # service.insert_one({"Money": 3000,"ment":"วันนี้หยุดบริการ 1 วัน 🙏\nเปิดบริการอีกทีในวันพรุ่งนี้ค่ะ🙏\nขอบคุณที่ใช้บริการFASTFOODนะคะ","opened":False, "Time": str(str_datetime)})
-    service.insert_one({"Money": 3000,"ment":"Test Ment","opened":True, "Time": str(str_datetime)})
+    service.insert_one({"Money": 3000,"ment":"Test Ment","opened":False, "Time": str(str_datetime)})
 
 
 def find_service():
