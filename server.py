@@ -7,13 +7,12 @@ if __name__ == '__main__':
 
                 host="0.0.0.0",
 
-                # port=443,
-                port=80,
+                port=443,
 
                 reload=True,
 
-                # ssl_keyfile="./private.key",
+                ssl_keyfile="./private.key",
 
-                # ssl_certfile="./certificate.pem"
+                ssl_certfile="./certificate.pem"
 
                 )
