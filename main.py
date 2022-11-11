@@ -93,5 +93,5 @@ def find_User_Data(User_ID="66"):
     if User_Data != None:
         result = int(User_Data["Point"])
     else:
-        result = 0
+        result = -1
     return result
