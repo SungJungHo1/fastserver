@@ -96,10 +96,10 @@ def Find_User_Profile(UserId):
     return Get_json
 
 
-def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money):
+def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus):
 
     Order_Code = Insert_Data(
-        UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money)
+        UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus)
 
     options_fee = 0
     totals = 0
