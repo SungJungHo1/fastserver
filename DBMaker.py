@@ -14,7 +14,7 @@ errcol = mydb['Errors']
 service = mydb['service']
 
 
-def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus):
+def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -28,7 +28,7 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
     mycol.insert_one({"Order_Code": Order_Code, "UserName": UserName, "UserId": UserId,
                      "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
-                       "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus})
+                       "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url})
 
     return Order_Code
 
@@ -55,10 +55,12 @@ def find_Order_Datas(UserId):
     DBs = mycol.find({"UserId": str(UserId)},{'_id': 0}).sort("_id", -1)
     for i in DBs:
         lis.append(i)
+        
     return {'Order_List':lis}
 
 def DB_Order_Data(Order_Code):
     DBs = mycol.find_one({"Order_Code": str(Order_Code)},{'_id': 0})
+    
     return DBs
 
 def find_Allcust():
@@ -114,7 +116,7 @@ if __name__ == "__main__":
     # x = errcol.find()
     # for i in x:
     #     print(i)
-    find_Order_Datas('Ua405f456c424b90f2d3271fac5f723a6')
+    # find_Order_Datas('Uad859360a7e2589c8c213b3b47fc27a2')
     # print(find_service())
     # Order_Code = shortuuid.uuid()
     # print(Order_Code)
@@ -122,6 +124,7 @@ if __name__ == "__main__":
     # print(find_service())
     # Insert_cust("크턱", "010-6675-5961")
     # find_Allcust()
+    DB_Order_Data('LqVxBH5pAxpWvnJhYEfVR8')
     # Drop_Users()
     # Insert_Err("sdsdsdsdsds")
     # Edit_Data("1382022238380", "https://ibb.co/r22bKFs")

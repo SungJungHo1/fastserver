@@ -70,10 +70,24 @@ def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
     return datas
 
 @app.post('/pushOrder')
-def pushOrder(userId="66", userName="66",new_cus:bool=False, delivery_fee="66", Service_Money="66", ImageIn="66", lan=Form(...), lng=Form(...), OrderData=Form(...), cart=Form(...), image: UploadFile = File(None), background_tasks: BackgroundTasks = None):
+def pushOrder(
+        userId="66",
+        userName="66",
+        new_cus:bool=False,
+        delivery_fee="66",
+        Service_Money="66",
+        ImageIn="66",
+        lan=Form(...),
+        lng=Form(...),
+        thumbnail_url=Form(...),
+        OrderData=Form(...),
+        cart=Form(...),
+        image: UploadFile = File(None),
+        background_tasks: BackgroundTasks = None
+    ):
 
     datas, Order_Code = Push_Message(userId, userName, delivery_fee,
-                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus)
+                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url)
     if ImageIn == "yes":
         background_tasks.add_task(UpLoad_IMG, image, Order_Code)
 
