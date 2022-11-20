@@ -59,14 +59,11 @@ def find_Order_Datas(UserId):
 
 def DB_Order_Data(Order_Code):
     DBs = mycol.find_one({"Order_Code": str(Order_Code)},{'_id': 0})
-    print(DBs)
     return DBs
 
 def find_Allcust():
 
     DBs = mycustomer.find()
-    for i in DBs:
-        print(i)
     return DBs
 
 

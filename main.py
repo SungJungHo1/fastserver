@@ -61,14 +61,12 @@ def popularMenu(latitude="37.5347556106622", longitude="127.114906298514"):
 def find_Order(userId="Ua405f456c424b90f2d3271fac5f723a6"):
 
     datas = find_Order_Datas(userId)
-    print(datas)
     return datas
 
 @app.get('/Order_Data')
 def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
 
     datas = DB_Order_Data(Order_Code)
-    print(datas)
     return datas
 
 @app.post('/pushOrder')

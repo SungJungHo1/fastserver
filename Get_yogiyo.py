@@ -30,7 +30,6 @@ def Upload_IMG(image):
     }
     res = requests.post(url, payload)
     Get_json = res.json()
-    print(Get_json)
     return Get_json['data']["url"]
 
 
