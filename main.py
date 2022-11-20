@@ -57,6 +57,19 @@ def popularMenu(latitude="37.5347556106622", longitude="127.114906298514"):
 
     return data
 
+@app.get('/find_Order_Datas')
+def find_Order(userId="Ua405f456c424b90f2d3271fac5f723a6"):
+
+    datas = find_Order_Datas(userId)
+    print(datas)
+    return datas
+
+@app.get('/Order_Data')
+def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
+
+    datas = DB_Order_Data(Order_Code)
+    print(datas)
+    return datas
 
 @app.post('/pushOrder')
 def pushOrder(userId="66", userName="66",new_cus:bool=False, delivery_fee="66", Service_Money="66", ImageIn="66", lan=Form(...), lng=Form(...), OrderData=Form(...), cart=Form(...), image: UploadFile = File(None), background_tasks: BackgroundTasks = None):

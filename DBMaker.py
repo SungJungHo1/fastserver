@@ -47,8 +47,20 @@ def Insert_cust(UserName, UserId, phone):
 def find_cust(UserId):
 
     DBs = mycustomer.find_one({"UserId": str(UserId), })
+
     return DBs
 
+def find_Order_Datas(UserId):
+    lis = []
+    DBs = mycol.find({"UserId": str(UserId)},{'_id': 0}).sort("_id", -1)
+    for i in DBs:
+        lis.append(i)
+    return {'Order_List':lis}
+
+def DB_Order_Data(Order_Code):
+    DBs = mycol.find_one({"Order_Code": str(Order_Code)},{'_id': 0})
+    print(DBs)
+    return DBs
 
 def find_Allcust():
 
@@ -88,7 +100,7 @@ def Insert_Err(Errors):
 
 
 def Edit_Data(Order_Code, Ur):
-    ttt = mycol.update_one({"Order_Code": str(Order_Code)}, {
+    mycol.update_one({"Order_Code": str(Order_Code)}, {
         '$set': {'Addres_Url': str(Ur)}})
 
 
@@ -105,8 +117,8 @@ if __name__ == "__main__":
     # x = errcol.find()
     # for i in x:
     #     print(i)
-    Insert_service()
-    print(find_service())
+    find_Order_Datas('Ua405f456c424b90f2d3271fac5f723a6')
+    # print(find_service())
     # Order_Code = shortuuid.uuid()
     # print(Order_Code)
     # print(type(Order_Code))
