@@ -1,3 +1,4 @@
+from DBMaker import find_Account
 
 def Make_dics(get_List, lists):
     for i in lists:
@@ -424,6 +425,7 @@ def Make_OrderList(UserId, UserName, OrderData, cart, Menu_Data, options_fee, to
 
 
 def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, Service_Money):
+    Account = find_Account()
     datas = {
         "to": userId,
         "messages": [
@@ -562,7 +564,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "126910632-69107",
+                                                        "text": str(Account["Account_Name"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end",
@@ -582,7 +584,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "Hana Bank",
+                                                        "text": str(Account["Bank_Name"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end"
@@ -601,7 +603,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": "이정희",
+                                                        "text": str(Account["Account_Number"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end"
