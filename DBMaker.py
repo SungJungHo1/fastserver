@@ -10,6 +10,7 @@ client = MongoClient('mongodb://fastfood:fastfood@43.200.202.12', 27017)
 mydb = client['FastFoodDB']
 mycol = mydb['OrderDatas']
 mycustomer = mydb['Customer']
+myAccount = mydb['Account']
 errcol = mydb['Errors']
 service = mydb['service']
 
@@ -43,6 +44,11 @@ def Insert_cust(UserName, UserId, phone):
     mycustomer.insert_one(
         {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0, 'Start_Time': str_datetime})
 
+def find_Account():
+
+    DBs = myAccount.find_one({"number": 1, },{'_id': 0})
+
+    return DBs
 
 def find_cust(UserId):
 
@@ -124,7 +130,8 @@ if __name__ == "__main__":
     # print(find_service())
     # Insert_cust("크턱", "010-6675-5961")
     # find_Allcust()
-    DB_Order_Data('LqVxBH5pAxpWvnJhYEfVR8')
+    # DB_Order_Data('LqVxBH5pAxpWvnJhYEfVR8')
+    print(find_Account())
     # Drop_Users()
     # Insert_Err("sdsdsdsdsds")
     # Edit_Data("1382022238380", "https://ibb.co/r22bKFs")

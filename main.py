@@ -19,6 +19,12 @@ app.add_middleware(
 async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514', own_delivery_only='false'):
 
     data = get_Yogiyo(category, latitude, longitude, own_delivery_only)
+    return 'data'
+
+@app.get('/getAccount')
+async def Accoun():
+
+    data = find_Account()
 
     return data
 
