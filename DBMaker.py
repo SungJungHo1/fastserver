@@ -52,7 +52,7 @@ def find_Account():
 
 def find_cust(UserId):
 
-    DBs = mycustomer.find_one({"UserId": str(UserId), })
+    DBs = mycustomer.find_one({"UserId": str(UserId), },{'_id': 0})
 
     return DBs
 
@@ -108,12 +108,16 @@ def Edit_Data(Order_Code, Ur):
     mycol.update_one({"Order_Code": str(Order_Code)}, {
         '$set': {'Addres_Url': str(Ur)}})
 
+def Add_cus_AddrData(UserId, Ur):
+    mycustomer.update_one({"UserId": str(UserId)}, { '$addToSet': { 'AddLists':  Ur} })
+
 
 def Drop_Users():
     mycustomer.drop()
 
 
 if __name__ == "__main__":
+    Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
     # Insert_Data("Uad859360a7e2589c8c213b3b47fc27a2",'크턱',orderdata,cart)
     # Drop_Users()
     # z = randrange(0,900)
@@ -131,7 +135,7 @@ if __name__ == "__main__":
     # Insert_cust("크턱", "010-6675-5961")
     # find_Allcust()
     # DB_Order_Data('LqVxBH5pAxpWvnJhYEfVR8')
-    print(find_Account())
+    # print(find_Account())
     # Drop_Users()
     # Insert_Err("sdsdsdsdsds")
     # Edit_Data("1382022238380", "https://ibb.co/r22bKFs")

@@ -126,3 +126,13 @@ def find_User_Data(User_ID="66"):
     else:
         result = -1
     return result
+
+@app.get('/find_User_Data2')
+def find_User_Data2(User_ID="66"):
+    User_Data = find_cust(User_ID)
+    if User_Data != None:
+        result = User_Data
+    else:
+        result = None
+    
+    return result
