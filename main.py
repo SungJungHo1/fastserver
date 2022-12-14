@@ -4,6 +4,7 @@ from DBMaker import *
 from fastapi import FastAPI, File, Form, UploadFile, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 import time
+from pydantic import BaseModel
 app = FastAPI()
 
 app.add_middleware(
@@ -14,6 +15,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class Item(BaseModel):
+    date: str
+    to: str
+    message: str
 
 @app.get('/getStores')
 async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514', own_delivery_only='false'):
@@ -34,6 +39,12 @@ def getMenus(id="261363"):
     data = get_Menu(id)
     return data
 
+@app.post('/WaitTime')
+def getMenus(item : Item):
+    
+    # print()/
+    Insert_WaitTime(item.date,item.message)
+    return "item"
 
 @app.get('/getReviews')
 def getReviews(id="1048427", count="100", page="1"):

@@ -13,7 +13,10 @@ mycustomer = mydb['Customer']
 myAccount = mydb['Account']
 errcol = mydb['Errors']
 service = mydb['service']
+WaitTime = mydb['WaitTime']
 
+def Insert_WaitTime(Time,message):
+    WaitTime.insert_one({"Time":Time,"message":message})
 
 def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url):
     # z = randrange(0, 900)
@@ -117,7 +120,10 @@ def Drop_Users():
 
 
 if __name__ == "__main__":
-    Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
+    # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
+    www = WaitTime.find()
+    for i in www:
+        print(i)
     # Insert_Data("Uad859360a7e2589c8c213b3b47fc27a2",'크턱',orderdata,cart)
     # Drop_Users()
     # z = randrange(0,900)
