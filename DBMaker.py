@@ -4,6 +4,9 @@ from datetime import *
 from random import *
 from datetime import datetime, timedelta, timezone
 import shortuuid
+import re
+
+pattern = re.compile("- 매장명 : \S+")
 
 client = MongoClient('mongodb://fastfood:fastfood@43.200.202.12', 27017)
 
@@ -121,9 +124,13 @@ def Drop_Users():
 
 if __name__ == "__main__":
     # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
+    # www = WaitTime.find_one({"Time":'2022.12.15 21:25:33'})
     www = WaitTime.find()
     for i in www:
         print(i)
+    # print(www["message"])
+    # tet = pattern.search(www["message"]).group()
+    # print(tet.replace("- 매장명 : ",""))
     # Insert_Data("Uad859360a7e2589c8c213b3b47fc27a2",'크턱',orderdata,cart)
     # Drop_Users()
     # z = randrange(0,900)

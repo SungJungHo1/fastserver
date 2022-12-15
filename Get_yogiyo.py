@@ -74,11 +74,11 @@ def Find_Top(lat, lng):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category=전체&items=60&lat={lat}&lng={lng}&order=rank"
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category=전체&items=60&lat={lat}&lng={lng}&sort_order=desc"
     # url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&lat={lat}&lng={lng}&order=review_avg&page=0&search="
     response = requests.get(url, headers=header)
     Get_json = response.json()
-    Get_json['restaurants'].sort(key=lambda x: (-x['additional_discount'],-x['discount_percent']))
+    Get_json['restaurants']
     Return_Data = {'restaurants':Get_json['restaurants'][0:15]}
     return Return_Data
 
