@@ -39,12 +39,11 @@ def getMenus(id="261363"):
     data = get_Menu(id)
     return data
 
-@app.post('/WaitTime')
+@app.post('/wait-time')
 def getMenus(item : Item):
     
-    # print()/
     Insert_WaitTime(item.date,item.message)
-    return "item"
+    return item
 
 @app.get('/getReviews')
 def getReviews(id="1048427", count="100", page="1"):

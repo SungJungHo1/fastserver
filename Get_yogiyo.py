@@ -12,13 +12,12 @@ def get_Yogiyo(category, lat, lng, own_delivery_only):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category={category}&items=60&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&page=0&search="
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category={category}&items=60&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
     response = requests.get(url, headers=header)
     Get_json = response.json()
-    Get_json['restaurants'].sort(key=lambda x: (-x['additional_discount'],-x['discount_percent']))
+    Get_json['restaurants']
     return Get_json
-
-
+    
 def Upload_IMG(image):
 
     key = 'b22dba8348a705c59d025bfe148ba482'
