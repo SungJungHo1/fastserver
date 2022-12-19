@@ -47,8 +47,8 @@ def Insert_Refund_Data(UserName, UserId,Name, BankName, accountName):
     format = '%Y-%m-%d %H:%M:%S'
     str_datetime = datetime.strftime(datetime_utc2, format)
 
-    mycol.insert_one({"Refund_Code": Order_Code, "UserName": UserName, "UserId": UserId,
-                       "Refund_Code": str(str_datetime),'Name':Name,'BankName':BankName,'accountName':accountName})
+    Refund_Data.insert_one({"Refund_Code": Order_Code, "UserName": UserName, "UserId": UserId,
+                       "Refund_Time": str(str_datetime),'Name':Name,'BankName':BankName,'accountName':accountName})
 
     return Order_Code
 
@@ -137,9 +137,11 @@ def Drop_Users():
 if __name__ == "__main__":
     # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
     # www = WaitTime.find_one({"Time":'2022.12.15 21:25:33'})
-    www = WaitTime.find()
+    www = mycol.find().sort("_id", -1).limit(10)
     for i in www:
-        print(i)
+        if "Refund_Code" in i:
+            mycol.delete_one({'Refund_Code':i['Refund_Code']})
+            print(i)
     # print(www["message"])
     # tet = pattern.search(www["message"]).group()
     # print(tet.replace("- 매장명 : ",""))
