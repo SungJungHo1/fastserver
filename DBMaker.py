@@ -137,7 +137,7 @@ def Drop_Users():
 if __name__ == "__main__":
     # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
     # www = WaitTime.find_one({"Time":'2022.12.15 21:25:33'})
-    www = mycol.find().sort("_id", -1).limit(10)
+    www = mycol.find().sort("_id", -1)
     for i in www:
         if "Refund_Code" in i:
             mycol.delete_one({'Refund_Code':i['Refund_Code']})
