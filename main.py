@@ -20,11 +20,27 @@ class Item(BaseModel):
     to: str
     message: str
 
+class refundItem(BaseModel):
+    UserName:str
+    UserId:str
+    Name:str
+    BankName:str
+    accountName:str
+
 @app.get('/getStores')
 async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514', own_delivery_only='false'):
 
     data = get_Yogiyo(category, latitude, longitude, own_delivery_only)
     return data
+
+@app.post('/refund')
+async def PostRefund(data:refundItem):
+    print(data.Name)
+    print(data.BankName)
+    print(data.accountName)
+    Insert_Refund_Data(UserName=data.UserName, UserId=data.UserId,Name=data.Name, BankName=data.BankName, accountName=data.accountName)
+    
+    return "data"
 
 @app.get('/getAccount')
 async def Accoun():
