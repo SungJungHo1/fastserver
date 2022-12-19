@@ -22,7 +22,7 @@ Refund_Data = mydb['Refund_Data']
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
 
-def Insert_Refund_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url):
+def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # www = WaitTime.find_one({"Time":'2022.12.15 21:25:33'})
     www = Refund_Data.find().sort("_id", -1)
     sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
-    for i in sdsdsd:
+    for i in www:
         # if "Refund_Code" in i:
         #     mycol.delete_one({'Refund_Code':i['Refund_Code']})
             print(i)
