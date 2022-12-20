@@ -140,8 +140,8 @@ if __name__ == "__main__":
     www = Refund_Data.find().sort("_id", -1)
     sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
     for i in www:
-        # if "Refund_Code" in i:
-        #     mycol.delete_one({'Refund_Code':i['Refund_Code']})
+        if "Refund_Code" in i:
+            Refund_Data.delete_one({'Refund_Code':i['Refund_Code']})
             print(i)
     # print(www["message"])
     # tet = pattern.search(www["message"]).group()
