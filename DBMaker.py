@@ -31,7 +31,8 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
 
     format = '%Y-%m-%d %H:%M:%S'
     str_datetime = datetime.strftime(datetime_utc2, format)
-    
+    if find_cust(UserId) == None:
+        Insert_cust(UserName, UserId, Order_Data['phone'])
     mycol.insert_one({"Order_Code": Order_Code, "UserName": UserName, "UserId": UserId,
                      "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
@@ -143,9 +144,10 @@ if __name__ == "__main__":
     www = Refund_Data.find().sort("_id", -1)
     sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
     for i in www:
-        if "Refund_Code" in i:
-            Refund_Data.delete_one({'Refund_Code':i['Refund_Code']})
-            print(i)
+        # if "Refund_Code" in i:
+        # Refund_Data.delete_one({'Order_Code':i['Order_Code']})
+
+        print(i)
     # print(www["message"])
     # tet = pattern.search(www["message"]).group()
     # print(tet.replace("- 매장명 : ",""))
