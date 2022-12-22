@@ -12,7 +12,7 @@ def get_Yogiyo(category, lat, lng, own_delivery_only):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category={category}&items=60&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category={category}&items=120&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
     response = requests.get(url, headers=header)
     Get_json = response.json()
     Get_json['restaurants']
@@ -41,7 +41,6 @@ def get_Menu(id):
     Get_json = response.json()
     return Get_json
 
-
 def getItemReviews(id, page, count, menu_id):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
@@ -64,7 +63,7 @@ def Search_Category(Search, page, lat, lng):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/search/?items=60&lat={lat}&lng={lng}&order=rank&page={page}&search={Search}"
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/search/?items=120&lat={lat}&lng={lng}&order=rank&page={page}&search={Search}"
     response = requests.get(url, headers=header)
     Get_json = response.json()
     return Get_json
