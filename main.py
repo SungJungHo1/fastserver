@@ -108,6 +108,7 @@ def pushOrder(
         ImageIn="66",
         lan=Form(...),
         lng=Form(...),
+        use_point=Form(...),
         thumbnail_url=Form(...),
         OrderData=Form(...),
         cart=Form(...),
@@ -116,7 +117,8 @@ def pushOrder(
     ):
 
     datas, Order_Code = Push_Message(userId, userName, delivery_fee,
-                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url)
+                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point)
+    update_point(userId,use_point)
     if ImageIn == "yes":
         background_tasks.add_task(UpLoad_IMG, image, Order_Code)
 

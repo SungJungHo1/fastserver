@@ -92,11 +92,13 @@ def Find_User_Profile(UserId):
     Get_json = response.json()
     return Get_json
 
+def update_point(UserId,Usepoint):
+    Edit_Point(UserId,Usepoint)
 
-def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url):
+def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point):
 
     Order_Code = Insert_Data(
-        UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url=thumbnail_url)
+        UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url=thumbnail_url,use_point=use_point)
 
     options_fee = 0
     totals = 0
@@ -118,16 +120,16 @@ def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Serv
                 options_fee = options_fee + x['subOptionPrice']
 
     datas = template_Test(UserId, UserName, int(totals),
-                          int(delivery_fee), Order_Code, Service_Money)
+                          int(delivery_fee), Order_Code, Service_Money,use_point=use_point)
 
     return datas['messages'], Order_Code
 
 
-def template_Test(userId, UserName, Total_pay, deliver_fee, Order_Code, Service_Money):
+def template_Test(userId, UserName, Total_pay, deliver_fee, Order_Code, Service_Money,use_point):
 
     Total_Count = Total_pay + deliver_fee + int(Service_Money)
     datas = Make_DD(userId, Total_pay, deliver_fee,
-                    Total_Count, UserName, Order_Code, int(Service_Money))
+                    Total_Count, UserName, Order_Code, int(Service_Money),use_point=use_point)
 
     return datas
 

@@ -22,7 +22,7 @@ Refund_Data = mydb['Refund_Data']
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
 
-def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url):
+def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -34,6 +34,7 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
     if find_cust(UserId) == None:
         Insert_cust(UserName, UserId, Order_Data['phone'])
     mycol.insert_one({"Order_Code": Order_Code, "UserName": UserName, "UserId": UserId,
+                    'use_point':use_point,
                      "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
                        "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url})
@@ -130,6 +131,10 @@ def Edit_Data(Order_Code, Ur):
     mycol.update_one({"Order_Code": str(Order_Code)}, {
         '$set': {'Addres_Url': str(Ur)}})
 
+def Edit_Point(Order_Code, point):
+    mycustomer.update_one({"UserId": str(Order_Code)}, {
+        '$inc': {'Point': -int(point)}})
+
 def Add_cus_AddrData(UserId, Ur):
     mycustomer.update_one({"UserId": str(UserId)}, { '$addToSet': { 'AddLists':  Ur} })
 
@@ -141,13 +146,16 @@ def Drop_Users():
 if __name__ == "__main__":
     # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
     # www = WaitTime.find_one({"Time":'2022.12.15 21:25:33'})
-    www = Refund_Data.find().sort("_id", -1)
-    sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
-    for i in www:
-        # if "Refund_Code" in i:
-        # Refund_Data.delete_one({'Order_Code':i['Order_Code']})
+    # www = Refund_Data.find().sort("_id", -1)
+    # sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
+    # for i in www:
+    #     # if "Refund_Code" in i:
+    #     # Refund_Data.delete_one({'Order_Code':i['Order_Code']})
 
-        print(i)
+    #     print(i)
+    # Edit_Point('U812329a68632f4237dea561c6ba1d413',100)
+    print(find_cust('U812329a68632f4237dea561c6ba1d413'))
+    # print(find_Order_Datas('U812329a68632f4237dea561c6ba1d413'))
     # print(www["message"])
     # tet = pattern.search(www["message"]).group()
     # print(tet.replace("- 매장명 : ",""))
