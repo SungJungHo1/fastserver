@@ -129,7 +129,7 @@ def template_Test(userId, UserName, Total_pay, deliver_fee, Order_Code, Service_
 
     Total_Count = Total_pay + deliver_fee + int(Service_Money)
     datas = Make_DD(userId, Total_pay, deliver_fee,
-                    Total_Count, UserName, Order_Code, int(Service_Money),use_point=use_point)
+                    Total_Count, UserName, Order_Code, int(Service_Money),use_point=int(use_point))
 
     return datas
 
