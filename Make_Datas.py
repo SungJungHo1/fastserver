@@ -532,16 +532,16 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "contents": [
                                                     {
                                                         "type": "text",
-                                                        "text": "사용 포인트",  # 사용포인트
+                                                        "text": "คะแนนที่ใช้",  # 사용포인트
                                                         "size": "sm",
-                                                        "color": "#555555",
+                                                        "color": "#1DB446",
                                                         "flex": 0
                                                     },
                                                     {
                                                         "type": "text",
                                                         "text": f"{format(use_point, ',d')} ￦",
                                                         "size": "sm",
-                                                        "color": "#111111",
+                                                        "color": "#1DB446",
                                                         "align": "end"
                                                     }
                                                 ]
