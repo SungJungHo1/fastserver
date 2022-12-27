@@ -9,12 +9,12 @@ if __name__ == '__main__':
 
                 reload=True,
 
-                port=80,
+                # port=80,
 
-                # port=443,
+                port=443,
 
-                # ssl_keyfile="./private.key",
+                ssl_keyfile="./private.key",
 
-                # ssl_certfile="./certificate.pem"
+                ssl_certfile="./certificate.pem"
 
                 )
