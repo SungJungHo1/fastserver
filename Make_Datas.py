@@ -678,21 +678,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                     }
                                 ]
                             },
-                            "footer": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                    "type": "message",
-                                    "label": "เลขที่บัญชี สำเนา",
-                                    "text": str(Account["Account_Name"])
-                                    },
-                                    "style": "primary"
-                                }
-                                ]
-                            },
+                            
                             "styles": {
                                 "footer": {
                                 "separator": True
