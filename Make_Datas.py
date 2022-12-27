@@ -674,15 +674,6 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "size": "xs",
                                                 "align": "end"
                                             },
-                                            
-                                        ]
-                                    },
-
-                                    {
-                                        "type": "box",
-                                        "layout": "horizontal",
-                                        "margin": "md",
-                                        "contents": [
                                             {
                                                 "type": "button",
                                                 "action": {
@@ -692,8 +683,9 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 },
                                                 "style": "primary"
                                             }
+                                            
                                         ]
-                                    }
+                                    },
                                 ]
                             },
                             "styles": {
