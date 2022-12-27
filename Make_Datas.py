@@ -674,15 +674,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "size": "xs",
                                                 "align": "end"
                                             },
-                                            {
-                                                "type": "button",
-                                                "action": {
-                                                    "type": "message",
-                                                    "label": "action",
-                                                    "text": "hello"
-                                                },
-                                                "style": "primary"
-                                            }
+                                            
                                             
                                         ]
                                     },
