@@ -693,16 +693,8 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                 }
                                 ]
                             },
-                            "styles": {
-                                "footer": {
-                                "separator": True
-                                }
-                            },
-                            "styles": {
-                                "footer": {
-                                    "separator": True
-                                }
-                            }
+                            
+                            
                         },  # 끝
                         {
                             "type": "bubble",
