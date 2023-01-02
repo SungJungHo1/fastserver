@@ -584,7 +584,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": str(Account["Account_Name"]),
+                                                        "text": str(Account["Account_Number"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end",
@@ -604,7 +604,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": str(Account["Bank_Name"]),
+                                                        "text": str(Account["Account_Name"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end"
@@ -623,7 +623,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": str(Account["Account_Number"]),
+                                                        "text": str(Account["Bank_Name"]),
                                                         "size": "sm",
                                                         "color": "#037bfc",
                                                         "align": "end"
