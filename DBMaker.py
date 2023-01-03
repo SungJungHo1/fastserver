@@ -154,7 +154,8 @@ if __name__ == "__main__":
 
     #     print(i)
     # Edit_Point('U812329a68632f4237dea561c6ba1d413',100)
-    print(find_Account())
+    # print(find_Account())
+    print(find_cust('119693764209394'))
     # print(find_cust('U812329a68632f4237dea561c6ba1d413'))
     # print(find_Order_Datas('U812329a68632f4237dea561c6ba1d413'))
     # print(www["message"])
