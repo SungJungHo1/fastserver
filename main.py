@@ -159,6 +159,13 @@ def In_cust(UserName, UserId, phone = "01000000000"):
     
     return "result"
 
+@app.get('/UUName')
+def Update_UserName(UserName, UserId):
+
+    Edit_UserN(UserId, UserName,"66")
+    
+    return "result"
+
 @app.get('/find_User_Data2')
 def find_User_Data2(User_ID="66"):
     User_Data = find_cust(User_ID)
