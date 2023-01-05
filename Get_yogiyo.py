@@ -24,6 +24,7 @@ def Upload_IMG(image):
 
     url = "https://api.imgbb.com/1/upload"
     payload = {
+        'expiration':72000,
         "key": key,
         "image": base64.b64encode(image),
     }
