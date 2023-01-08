@@ -99,9 +99,13 @@ def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
     return datas
 
 @app.get('/Add_Address')
-def Add_Address(add1="",add2="",phone="",add_Name="",UserName="",UserId=""):
+def Add_Address(add1="",add2="",phone="",add_Name="",UserName="",UserId="",image: UploadFile = File(None),
+        background_tasks: BackgroundTasks = None,ImageIn="66"):
 
-    Insert_Address(add1,add2,phone,add_Name,UserName,UserId)
+    add_Code = Insert_Address(add1,add2,phone,add_Name,UserName,UserId)
+
+    if ImageIn == "yes":
+        background_tasks.add_task(UpLoad_Add_IMG, image, add_Code)
 
     return "datas"
 
@@ -135,6 +139,11 @@ def pushOrder(
 def UpLoad_IMG(img: UploadFile, Order_Code):
     IMG_URL = Upload_IMG(img.file.read())
     Edit_Data(Order_Code, IMG_URL)
+
+
+def UpLoad_Add_IMG(img: UploadFile, add_Code):
+    IMG_URL = Upload_IMG(img.file.read())
+    Edit_Add_Data(add_Code, IMG_URL)
 
 
 @app.get('/service')

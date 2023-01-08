@@ -24,7 +24,16 @@ def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
 
 def Insert_Address(add1,add2,phone,add_Name,UserName,UserId):
-    MyAddress.insert_one({'UserName':UserName,'UserId':UserId,"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name})
+    add_Code = shortuuid.uuid()
+
+    timezone_kst = timezone(timedelta(hours=9))
+    datetime_utc2 = datetime.now(timezone_kst)
+
+    format = '%Y-%m-%d %H:%M:%S'
+    str_datetime = datetime.strftime(datetime_utc2, format)
+
+    MyAddress.insert_one({'add_Code':add_Code,'str_datetime':str_datetime,'UserName':UserName,'UserId':UserId,"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name,'Addres_Url':""})
+    return add_Code
 
 
 def Edit_UserN(UserId, UserName,phone):
@@ -146,6 +155,16 @@ def Insert_Err(Errors):
 def Edit_Data(Order_Code, Ur):
     mycol.update_one({"Order_Code": str(Order_Code)}, {
         '$set': {'Addres_Url': str(Ur)}})
+
+
+
+def Edit_Add_Data(add_Code, Ur):
+    MyAddress.update_one({"add_Code": str(add_Code)}, {
+        '$set': {'Addres_Url': str(Ur)}})
+
+
+
+
 
 def Edit_Point(Order_Code, point):
     mycustomer.update_one({"UserId": str(Order_Code)}, {
