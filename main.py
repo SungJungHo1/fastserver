@@ -99,7 +99,7 @@ def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
     return datas
 
 @app.post('/Add_Address')
-def Add_Address(add1,add2,phone,add_Name,UserName,UserId):
+def Add_Address(add1="",add2="",phone="",add_Name="",UserName="",UserId=""):
 
     Insert_Address(add1,add2,phone,add_Name,UserName,UserId)
 
