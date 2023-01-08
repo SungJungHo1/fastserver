@@ -23,7 +23,7 @@ Refund_Data = mydb['Refund_Data']
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
 
-def Insert_Address(add1,add2,phone,add_Name,UserName,UserId):
+def Insert_Address(add1,add2,phone,add_Name,UserName,UserId,friend):
     add_Code = shortuuid.uuid()
 
     timezone_kst = timezone(timedelta(hours=9))
@@ -32,7 +32,7 @@ def Insert_Address(add1,add2,phone,add_Name,UserName,UserId):
     format = '%Y-%m-%d %H:%M:%S'
     str_datetime = datetime.strftime(datetime_utc2, format)
 
-    MyAddress.insert_one({'add_Code':add_Code,'str_datetime':str_datetime,'UserName':UserName,'UserId':UserId,"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name,'Addres_Url':""})
+    MyAddress.insert_one({'add_Code':add_Code,'str_datetime':str_datetime,'UserName':UserName,'UserId':UserId,"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name,'Addres_Url':"",'friend':friend})
     return add_Code
 
 

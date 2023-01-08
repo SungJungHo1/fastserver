@@ -100,9 +100,9 @@ def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
 
 @app.post('/Add_Address')
 def Add_Address(add1="",add2="",phone="",add_Name="",UserName="",UserId="",image: UploadFile = File(None),
-        background_tasks: BackgroundTasks = None,ImageIn="66"):
+        background_tasks: BackgroundTasks = None,ImageIn="66",friend=False):
 
-    add_Code = Insert_Address(add1,add2,phone,add_Name,UserName,UserId)
+    add_Code = Insert_Address(add1,add2,phone,add_Name,UserName,UserId,friend)
 
     if ImageIn == "yes":
         background_tasks.add_task(UpLoad_Add_IMG, image, add_Code)
