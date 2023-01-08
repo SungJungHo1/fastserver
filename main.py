@@ -122,7 +122,7 @@ def pushOrder(
     if ImageIn == "yes":
         background_tasks.add_task(UpLoad_IMG, image, Order_Code)
 
-    return datas
+    return {'datas':datas,'Order_Code':Order_Code}
 
 
 def UpLoad_IMG(img: UploadFile, Order_Code):
