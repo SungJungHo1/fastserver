@@ -98,6 +98,13 @@ def find_Orders(Order_Code="d9tQxmYV9LQWe67xaivarm"):
     datas = DB_Order_Data(Order_Code)
     return datas
 
+@app.get('/Add_Address')
+def Add_Address(add1,add2,phone,add_Name):
+
+    Insert_Address(add1,add2,phone,add_Name)
+    
+    return "datas"
+
 @app.post('/pushOrder')
 def pushOrder(
         userId="66",

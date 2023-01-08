@@ -14,6 +14,7 @@ mydb = client['FastFoodDB']
 mycol = mydb['OrderDatas']
 mycustomer = mydb['Customer']
 myAccount = mydb['Account']
+MyAddress = mydb['Address']
 errcol = mydb['Errors']
 service = mydb['service']
 WaitTime = mydb['WaitTime']
@@ -21,6 +22,10 @@ Refund_Data = mydb['Refund_Data']
 
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
+
+def Insert_Address(add1,add2,phone,add_Name):
+    MyAddress.insert_one({"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name})
+
 
 def Edit_UserN(UserId, UserName,phone):
     if phone != '66':
