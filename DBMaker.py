@@ -23,8 +23,8 @@ Refund_Data = mydb['Refund_Data']
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
 
-def Insert_Address(add1,add2,phone,add_Name):
-    MyAddress.insert_one({"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name})
+def Insert_Address(add1,add2,phone,add_Name,UserName,UserId):
+    MyAddress.insert_one({'UserName':UserName,'UserId':UserId,"add1":add1,"add2":add2,'phone':phone,'add_Name':add_Name})
 
 
 def Edit_UserN(UserId, UserName,phone):
