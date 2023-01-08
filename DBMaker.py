@@ -161,7 +161,7 @@ def Drop_Users():
 
 if __name__ == "__main__":
     # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
-    www = WaitTime.find({})
+    www = MyAddress.find({})
     # www = Refund_Data.find().sort("_id", -1)
     # sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
     for i in www:
