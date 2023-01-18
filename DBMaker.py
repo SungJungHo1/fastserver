@@ -43,6 +43,16 @@ def Edit_UserN(UserId, UserName,phone):
     else:
         mycustomer.update_one({"UserId": str(UserId)}, {
             '$set': {'UserName': str(UserName)}})
+def Add_Order_Log(UserId):
+    timezone_kst = timezone(timedelta(hours=9))
+    datetime_utc2 = datetime.now(timezone_kst)
+
+    format = '%Y-%m-%d'
+    str_datetime = datetime.strftime(datetime_utc2, format)
+    mycustomer.update_one({"UserId": str(UserId)}, {
+            '$set': {'Last_Order_Time': str_datetime}})
+    mycustomer.update_one({ 'UserId' : str(UserId)}, {"$inc" : {"Order_Total_Count" : 1}})
+
 
 def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point):
     # z = randrange(0, 900)
@@ -54,6 +64,8 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
     format = '%Y-%m-%d %H:%M:%S'
     str_datetime = datetime.strftime(datetime_utc2, format)
     cus = find_cust(UserId)
+    if cus != None:
+        Add_Order_Log(UserId)
     if cus == None:
         Insert_cust(UserName, UserId, Order_Data['phone'])
     elif cus["phone"] == "01000000000" or cus["phone"] == "66":
@@ -90,7 +102,8 @@ def Insert_cust(UserName, UserId, phone):
     str_datetime = datetime.strftime(datetime_utc2, format)
 
     mycustomer.insert_one(
-        {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0, 'Start_Time': str_datetime})
+        {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0, 'Start_Time': str_datetime,
+        'coupon_List':[],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
 
 def find_Account():
 
