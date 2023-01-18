@@ -50,7 +50,7 @@ def Add_Order_Log(UserId):
     format = '%Y-%m-%d'
     str_datetime = datetime.strftime(datetime_utc2, format)
     mycustomer.update_one({"UserId": str(UserId)}, {
-            '$set': {'Last_Order_Time': str_datetime}})
+            '$set': {'Last_Order_Time': str_datetime,"First_Coupon":False}})
     mycustomer.update_one({ 'UserId' : str(UserId)}, {"$inc" : {"Order_Total_Count" : 1}})
 
 
