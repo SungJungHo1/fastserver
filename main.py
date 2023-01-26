@@ -129,8 +129,6 @@ def pushOrder(
         image: UploadFile = File(None),
         background_tasks: BackgroundTasks = None
     ):
-    print(Coupon_Pay)
-    print(Coupon_Code)
     
     datas, Order_Code = Push_Message(userId, userName, delivery_fee,
                                      json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point,
