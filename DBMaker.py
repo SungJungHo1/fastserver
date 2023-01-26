@@ -19,9 +19,14 @@ errcol = mydb['Errors']
 service = mydb['service']
 WaitTime = mydb['WaitTime']
 Refund_Data = mydb['Refund_Data']
+Coupon_Data = mydb['Coupon_Data']
+
+def Use_Coupon(쿠폰번호):
+    Coupon_Data.update_one({'쿠폰번호':str(쿠폰번호)},{"$set":{"쿠폰사용여부":True}})
 
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
+    
 
 def Insert_Address(add1,add2,phone,add_Name,UserName,UserId,friend):
     add_Code = shortuuid.uuid()
@@ -53,8 +58,10 @@ def Add_Order_Log(UserId):
             '$set': {'Last_Order_Time': str_datetime,"First_Coupon":False}})
     mycustomer.update_one({ 'UserId' : str(UserId)}, {"$inc" : {"Order_Total_Count" : 1}})
 
+def Del_Coupon(userId,Coupon_Code):
+    mycustomer.update_one({"UserId":userId},{ "$pull": { "coupon_List": {"쿠폰번호":Coupon_Code} }})
 
-def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point):
+def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -74,12 +81,13 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
                     'use_point':use_point,
                      "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
-                       "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url})
+                       "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url,
+                       'Coupon_Pay':Coupon_Pay,'Coupon_Code':Coupon_Code})
     
     return Order_Code
     
 
-def Insert_Refund_Data(UserName, UserId,Name, BankName, accountName):
+def Insert_Refund_Data(UserName, UserId,Name, BankName, accountName, Refund_Point):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -90,7 +98,7 @@ def Insert_Refund_Data(UserName, UserId,Name, BankName, accountName):
     str_datetime = datetime.strftime(datetime_utc2, format)
 
     Refund_Data.insert_one({"Refund_Code": Order_Code, "UserName": UserName, "UserId": UserId,
-                       "Refund_Time": str(str_datetime),'Name':Name,'BankName':BankName,'accountName':accountName})
+                       "Refund_Time": str(str_datetime),'Name':Name,'BankName':BankName,'accountName':accountName,'Refund_Point':Refund_Point})
 
     return Order_Code
 
@@ -103,7 +111,7 @@ def Insert_cust(UserName, UserId, phone):
 
     mycustomer.insert_one(
         {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 3000, 'Start_Time': str_datetime,
-        'coupon_List':[],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
+        'coupon_List':[],"First_Coupon":False,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
 
 def find_Account():
 
@@ -179,8 +187,8 @@ def Edit_Add_Data(add_Code, Ur):
 
 
 
-def Edit_Point(Order_Code, point):
-    mycustomer.update_one({"UserId": str(Order_Code)}, {
+def Edit_Point(UserId, point):
+    mycustomer.update_one({"UserId": str(UserId)}, {
         '$inc': {'Point': -int(point)}})
 
 def Add_cus_AddrData(UserId, Ur):
@@ -192,44 +200,7 @@ def Drop_Users():
 
 
 if __name__ == "__main__":
-    # Add_cus_AddrData(5485851021533487,{'주소이름':'광주집','주소1':'월곡동','주소2':'빌라','좌표1':35.1673079492069,'좌표2':126.80982365415,})
-    www = MyAddress.find({})
-    # www = Refund_Data.find().sort("_id", -1)
-    # sdsdsd= mycol.find({'UserId':'U812329a68632f4237dea561c6ba1d413'})
-    for i in www:
+    # Del_Coupon('ZJwhWPpZp8xhGkyBHv2bxp')
+    xx = Coupon_Data.find({})
+    for i in xx:
         print(i)
-    # for i in www:
-    #     # if "Refund_Code" in i:
-    #     # Refund_Data.delete_one({'Order_Code':i['Order_Code']})
-
-    #     print(i)
-    # Edit_Point('U812329a68632f4237dea561c6ba1d413',100)
-    # print(find_Account())
-    # print(find_cust('194958326369375'))
-    # mycustomer.delete_one({'UserId': '194958326369375'})
-    # print(find_cust('U812329a68632f4237dea561c6ba1d413'))
-    # print(find_Order_Datas('U812329a68632f4237dea561c6ba1d413'))
-    # print(www["message"])
-    # tet = pattern.search(www["message"]).group()
-    # print(tet.replace("- 매장명 : ",""))
-    # Insert_Data("Uad859360a7e2589c8c213b3b47fc27a2",'크턱',orderdata,cart)
-    # Drop_Users()
-    # z = randrange(0,900)
-    # Order_Code = str(datetime.now().hour) + str(datetime.now().month) + str(datetime.now().year) + str(datetime.now().day) + str(int(datetime.now().microsecond / 1000)) + str(z)[-1]
-    # print('Order_Code')
-    # x = errcol.find()
-    # for i in x:
-    #     print(i)
-    # find_Order_Datas('Uad859360a7e2589c8c213b3b47fc27a2')
-    # print(find_service())
-    # Order_Code = shortuuid.uuid()
-    # print(Order_Code)
-    # print(type(Order_Code))
-    # print(find_service())
-    # Insert_cust("크턱", "010-6675-5961")
-    # find_Allcust()
-    # DB_Order_Data('LqVxBH5pAxpWvnJhYEfVR8')
-    # print(find_Account())
-    # Drop_Users()
-    # Insert_Err("sdsdsdsdsds")
-    # Edit_Data("1382022238380", "https://ibb.co/r22bKFs")

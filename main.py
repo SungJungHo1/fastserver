@@ -26,6 +26,7 @@ class refundItem(BaseModel):
     Name:str
     BankName:str
     accountName:str
+    Refund_Point:int
 
 @app.get('/getStores')
 async def getStores(category: str = "1인분주문", latitude='37.5347556106622', longitude='127.114906298514', own_delivery_only='false'):
@@ -36,7 +37,7 @@ async def getStores(category: str = "1인분주문", latitude='37.5347556106622'
 @app.post('/refund')
 async def PostRefund(data:refundItem):
     Insert_Refund_Data(UserName=data.UserName, UserId=data.UserId,Name=data.Name, BankName=data.BankName, accountName=data.accountName)
-    
+    Edit_Point(data.UserName,data.Refund_Point)
     return "data"
 
 @app.get('/getAccount')
@@ -120,16 +121,24 @@ def pushOrder(
         lan=Form(...),
         lng=Form(...),
         use_point=Form(...),
+        Coupon_Pay=Form(...),
+        Coupon_Code=Form(...),
         thumbnail_url=Form(...),
         OrderData=Form(...),
         cart=Form(...),
         image: UploadFile = File(None),
         background_tasks: BackgroundTasks = None
     ):
-
+    print(Coupon_Pay)
+    print(Coupon_Code)
+    
     datas, Order_Code = Push_Message(userId, userName, delivery_fee,
-                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point)
+                                     json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point,
+                                     Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code)
     update_point(userId,use_point)
+    if Coupon_Code != "":
+        Use_Coupon(Coupon_Code)
+        Del_Coupon(userId = userId,Coupon_Code = Coupon_Code)
     if ImageIn == "yes":
         background_tasks.add_task(UpLoad_IMG, image, Order_Code)
 
@@ -192,3 +201,4 @@ def find_User_Data2(User_ID="66"):
         result = None
     
     return result
+

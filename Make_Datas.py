@@ -424,7 +424,7 @@ def Make_OrderList(UserId, UserName, OrderData, cart, Menu_Data, options_fee, to
     return datas
 
 
-def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, Service_Money,use_point):
+def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, Service_Money,use_point,Coupon_Pay,Coupon_Code):
     Account = find_Account()
     datas = {
         "to": userId,
@@ -547,6 +547,26 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 ]
                                             },
                                             {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "Coupon",  # 쿠폰
+                                                        "size": "sm",
+                                                        "color": "#1DB446",
+                                                        "flex": 0
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": f"{format(Coupon_Pay, ',d')} ￦",
+                                                        "size": "sm",
+                                                        "color": "#1DB446",
+                                                        "align": "end"
+                                                    }
+                                                ]
+                                            },
+                                            {
                                                 "type": "separator",
                                                 "margin": "xxl"
                                             },
@@ -561,7 +581,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": '￦ ' + format(Total_Count - use_point, ',d'),
+                                                        "text": '￦ ' + format(Total_Count - use_point - Coupon_Pay, ',d'),
                                                         "align": "end",
                                                         "weight": "bold",
                                                         "color": "#1823b7"
