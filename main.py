@@ -36,7 +36,7 @@ async def getStores(category: str = "1인분주문", latitude='37.5347556106622'
 
 @app.post('/refund')
 async def PostRefund(data:refundItem):
-    Insert_Refund_Data(UserName=data.UserName, UserId=data.UserId,Name=data.Name, BankName=data.BankName, accountName=data.accountName)
+    Insert_Refund_Data(UserName=data.UserName, UserId=data.UserId,Name=data.Name, BankName=data.BankName, accountName=data.accountName,Refund_Point = data.Refund_Point)
     Edit_Point(data.UserName,data.Refund_Point)
     return "data"
 
