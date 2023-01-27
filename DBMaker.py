@@ -55,7 +55,7 @@ def Add_Order_Log(UserId):
     format = '%Y-%m-%d'
     str_datetime = datetime.strftime(datetime_utc2, format)
     mycustomer.update_one({"UserId": str(UserId)}, {
-            '$set': {'Last_Order_Time': str_datetime,"First_Coupon":False}})
+            '$set': {'Last_Order_Time': str_datetime}})
     mycustomer.update_one({ 'UserId' : str(UserId)}, {"$inc" : {"Order_Total_Count" : 1}})
 
 def Del_Coupon(userId,Coupon_Code):
@@ -111,7 +111,7 @@ def Insert_cust(UserName, UserId, phone):
 
     mycustomer.insert_one(
         {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0, 'Start_Time': str_datetime,
-        'coupon_List':[],"First_Coupon":False,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
+        'coupon_List':[],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
 
 def find_Account():
 
