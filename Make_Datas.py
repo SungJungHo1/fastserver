@@ -552,7 +552,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "contents": [
                                                     {
                                                         "type": "text",
-                                                        "text": "Coupon",  # 쿠폰
+                                                        "text": "คูปอง",  # 쿠폰
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "flex": 0
@@ -577,6 +577,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     {
                                                         "type": "text",
                                                         "text": "จำนวนเงินที่ต้องโอน",  # 입금금액
+                                                        "wrap": True,
                                                         "weight": "bold"
                                                     },
                                                     {
