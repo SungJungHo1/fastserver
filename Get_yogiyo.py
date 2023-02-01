@@ -178,7 +178,7 @@ def Upload_CF_IMG(image):
     )
     Get_json = response.json()
     
-    return Get_json['data']["url"]
+    return Get_json['result']['variants'][0]
 
 if __name__ == "__main__":
     
