@@ -1,5 +1,6 @@
 import base64
 from importlib.metadata import files
+from fastapi import UploadFile
 import requests
 import json
 from Ordersdatas import *
@@ -160,11 +161,28 @@ def IMG_Test(UserId, file_Name):
     Get_json = response.json()
     return Get_json
 
+def Upload_CF_IMG(image):
+    
+    headers = {
+    'Authorization': 'Bearer d07tKnBiHPNKTJUtKolp-vA38J4R4E5cf1RWIUpv',
+    }
+
+    files = {
+        'file': image,
+    }
+
+    response = requests.post(
+        'https://api.cloudflare.com/client/v4/accounts/aaf9489dd4c9a1c749f15ab1bd7019de/images/v1',
+        headers=headers,
+        files=files,
+    )
+    Get_json = response.json()
+    
+    return Get_json['data']["url"]
 
 if __name__ == "__main__":
-    rt = get_Yogiyo("전체",37.5347556106622,127.114906298514,False)
     
-    print(rt)
+    Upload_CF_IMG()
     # delivery_fee = 3000
     # datas = Push_Message("U812329a68632f4237dea561c6ba1d413",
     #                      '크턱', 3000, orderdata, cart2, 1010100, 10101010, 3000)

@@ -142,9 +142,22 @@ def pushOrder(
 
     return {'datas':datas,'Order_Code':Order_Code}
 
+@app.post('/pushOrder_CF')
+def pushOrders(
+        image: UploadFile  = File(None),
+        background_tasks: BackgroundTasks = None
+    ):
+    print(image)
+    
+    Upload_CF_IMG(image.file.read())
+    
+    # background_tasks.add_task(UpLoad_IMG, image, Order_Code)
+
+    return 'dada'
+
 
 def UpLoad_IMG(img: UploadFile, Order_Code):
-    IMG_URL = Upload_IMG(img.file.read())
+    IMG_URL = Upload_CF_IMG(img.file.read())
     Edit_Data(Order_Code, IMG_URL)
 
 
