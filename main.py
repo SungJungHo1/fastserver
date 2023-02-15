@@ -53,12 +53,6 @@ def getMenus(id="261363"):
     data = get_Menu(id)
     return data
 
-@app.post('/wait-time')
-def getMenus(item : Item):
-    
-    Insert_WaitTime(item.date,item.message)
-    return item
-
 @app.get('/getReviews')
 def getReviews(id="1048427", count="100", page="1"):
     data = get_Review(id, count, page)
@@ -121,6 +115,7 @@ def pushOrder(
         lan=Form(...),
         lng=Form(...),
         use_point=Form(...),
+        use_Repoint=Form(...),
         Coupon_Pay=Form(...),
         Coupon_Code=Form(...),
         thumbnail_url=Form(...),
@@ -129,11 +124,12 @@ def pushOrder(
         image: UploadFile = File(None),
         background_tasks: BackgroundTasks = None
     ):
-    
+    update_Repoint(userId,use_Repoint)
     datas, Order_Code = Push_Message(userId, userName, delivery_fee,
                                      json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point,
-                                     Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code)
+                                     Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code,use_Repoint = use_Repoint)
     update_point(userId,use_point)
+    
     if Coupon_Code != "":
         Use_Coupon(Coupon_Code)
         Del_Coupon(userId = userId,Coupon_Code = Coupon_Code)
@@ -141,20 +137,6 @@ def pushOrder(
         background_tasks.add_task(UpLoad_IMG, image, Order_Code)
 
     return {'datas':datas,'Order_Code':Order_Code}
-
-@app.post('/pushOrder_CF')
-def pushOrders(
-        image: UploadFile  = File(None),
-        background_tasks: BackgroundTasks = None
-    ):
-    print(image)
-    
-    Upload_CF_IMG(image.file.read())
-    
-    # background_tasks.add_task(UpLoad_IMG, image, Order_Code)
-
-    return 'dada'
-
 
 def UpLoad_IMG(img: UploadFile, Order_Code):
     IMG_URL = Upload_CF_IMG(img.file.read())

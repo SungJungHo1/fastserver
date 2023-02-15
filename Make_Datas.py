@@ -424,7 +424,7 @@ def Make_OrderList(UserId, UserName, OrderData, cart, Menu_Data, options_fee, to
     return datas
 
 
-def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, Service_Money,use_point,Coupon_Pay,Coupon_Code):
+def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, Service_Money,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
     Account = find_Account()
     datas = {
         "to": userId,
@@ -532,7 +532,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "contents": [
                                                     {
                                                         "type": "text",
-                                                        "text": "คะแนนที่ใช้",  # 사용포인트
+                                                        "text": "คะแนนที่ใช้",  # 사용캐쉬
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "flex": 0
@@ -546,6 +546,27 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     }
                                                 ]
                                             },
+                                            {
+                                                "type": "box",
+                                                "layout": "horizontal",
+                                                "contents": [
+                                                    {
+                                                        "type": "text",
+                                                        "text": "คะแนนที่ใช้",  # 사용포인트
+                                                        "size": "sm",
+                                                        "color": "#1DB446",
+                                                        "flex": 0
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "text": f"{format(use_Repoint, ',d')} ￦",
+                                                        "size": "sm",
+                                                        "color": "#1DB446",
+                                                        "align": "end"
+                                                    }
+                                                ]
+                                            },
+                                            
                                             {
                                                 "type": "box",
                                                 "layout": "horizontal",
@@ -582,7 +603,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": '￦ ' + format(Total_Count - use_point - Coupon_Pay, ',d'),
+                                                        "text": '￦ ' + format(Total_Count - use_point - Coupon_Pay - use_Repoint, ',d'),
                                                         "align": "end",
                                                         "weight": "bold",
                                                         "color": "#1823b7"

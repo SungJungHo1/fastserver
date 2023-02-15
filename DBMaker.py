@@ -61,7 +61,7 @@ def Add_Order_Log(UserId):
 def Del_Coupon(userId,Coupon_Code):
     mycustomer.update_one({"UserId":userId},{ "$pull": { "coupon_List": {"쿠폰번호":Coupon_Code} }})
 
-def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code):
+def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -79,6 +79,7 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
         Edit_UserN(UserId,UserName,Order_Data['phone'])
     mycol.insert_one({"Order_Code": Order_Code, "UserName": UserName, "UserId": UserId,
                     'use_point':use_point,
+                    'use_Repoint':use_Repoint,
                      "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
                        "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url,
@@ -199,6 +200,10 @@ def Edit_Point(UserId, point):
     mycustomer.update_one({"UserId": str(UserId)}, {
         '$inc': {'Point': -int(point)}})
 
+def Edit_RePoint(UserId, Repoint):
+    mycustomer.update_one({"UserId": str(UserId)}, {
+        '$inc': {'Re_Point': -int(Repoint)}})
+
 def Add_cus_AddrData(UserId, Ur):
     mycustomer.update_one({"UserId": str(UserId)}, { '$addToSet': { 'AddLists':  Ur} })
 
@@ -212,9 +217,10 @@ if __name__ == "__main__":
     # xx = Coupon_Data.find({})
     # for i in xx:
     #     print(i)
-    # mycustomer.update_many({}, {
-    #     '$set': {'Re_Point': 0}})
-    v = mycustomer.find({})
-    for i in v:
-        if "Re_Point" not in i:
-            print(i)
+    mycustomer.update_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"}, {
+        '$set': {'Re_Point': 10000}})
+    v = mycustomer.find_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"})
+    print(v)
+    # for i in v:
+    #     if "Re_Point" not in i:
+    #         print(i)

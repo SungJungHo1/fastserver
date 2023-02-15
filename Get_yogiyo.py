@@ -97,11 +97,14 @@ def Find_User_Profile(UserId):
 def update_point(UserId,Usepoint):
     Edit_Point(UserId,Usepoint)
 
-def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code):
+def update_Repoint(UserId,Usepoint):
+    Edit_RePoint(UserId,Usepoint)
+
+def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
 
     Order_Code = Insert_Data(
         UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url=thumbnail_url,use_point=use_point,
-        Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code)
+        Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code,use_Repoint=use_Repoint)
 
     options_fee = 0
     totals = 0
@@ -123,16 +126,16 @@ def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Serv
                 options_fee = options_fee + x['subOptionPrice']
 
     datas = template_Test(UserId, UserName, int(totals),
-                          int(delivery_fee), Order_Code, Service_Money,use_point=use_point,Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code)
+                          int(delivery_fee), Order_Code, Service_Money,use_point=use_point,Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code,use_Repoint = use_Repoint)
 
     return datas['messages'], Order_Code
 
 
-def template_Test(userId, UserName, Total_pay, deliver_fee, Order_Code, Service_Money,use_point,Coupon_Pay,Coupon_Code):
+def template_Test(userId, UserName, Total_pay, deliver_fee, Order_Code, Service_Money,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
 
     Total_Count = Total_pay + deliver_fee + int(Service_Money)
     datas = Make_DD(userId, Total_pay, deliver_fee,
-                    Total_Count, UserName, Order_Code, int(Service_Money),use_point=int(use_point),Coupon_Pay=int(Coupon_Pay),Coupon_Code=Coupon_Code)
+                    Total_Count, UserName, Order_Code, int(Service_Money),use_point=int(use_point),Coupon_Pay=int(Coupon_Pay),Coupon_Code=Coupon_Code,use_Repoint = use_Repoint)
 
     return datas
 
