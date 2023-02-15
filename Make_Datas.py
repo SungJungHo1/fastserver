@@ -580,7 +580,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": f"{format(Coupon_Pay, ',d')} ￦",
+                                                        "text": f"{format(int(Coupon_Pay), ',d')} ￦",
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "align": "end"
@@ -603,7 +603,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": '￦ ' + format(Total_Count - use_point - Coupon_Pay - use_Repoint, ',d'),
+                                                        "text": '￦ ' + format(int(Total_Count) - int(use_point) - int(Coupon_Pay) - int(use_Repoint), ',d'),
                                                         "align": "end",
                                                         "weight": "bold",
                                                         "color": "#1823b7"
