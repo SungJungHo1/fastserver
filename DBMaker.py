@@ -217,10 +217,10 @@ if __name__ == "__main__":
     # xx = Coupon_Data.find({})
     # for i in xx:
     #     print(i)
-    mycustomer.update_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"}, {
-        '$set': {'Re_Point': 10000}})
-    v = mycustomer.find_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"})
-    print(v)
-    # for i in v:
-    #     if "Re_Point" not in i:
-    #         print(i)
+    # mycustomer.update_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"}, {
+    #     '$set': {'Re_Point': 10000}})
+    v = mycustomer.find({})
+    
+    for i in v:
+        if "Re_Point" not in i:
+            print(i)
