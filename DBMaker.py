@@ -102,16 +102,24 @@ def Insert_Refund_Data(UserName, UserId,Name, BankName, accountName, Refund_Poin
 
     return Order_Code
 
+def Insert_CouponTime(지급일자,쿠폰내용,쿠폰번호,유저아이디):
+    Coupon_Data.insert_one({"지급일자":지급일자,"쿠폰내용":쿠폰내용,'쿠폰번호':str(쿠폰번호),'소유자':유저아이디})
+
 def Insert_cust(UserName, UserId, phone):
+
     timezone_kst = timezone(timedelta(hours=9))
     datetime_utc2 = datetime.now(timezone_kst)
-
+    Coupon_Code = shortuuid.uuid()
     format = '%Y-%m-%d %H:%M:%S'
+    format_Days = '%Y-%m-%d'
     str_datetime = datetime.strftime(datetime_utc2, format)
+    str_Days = datetime.strftime(datetime_utc2, format_Days)
+
+    Insert_CouponTime(str_Days,"First Coupon",Coupon_Code,UserName)
 
     mycustomer.insert_one(
-        {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0, 'Start_Time': str_datetime,
-        'coupon_List':[],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
+        {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0,'Re_Point': 0, 'Start_Time': str_datetime,
+        'coupon_List':[{"지급일자":str_Days,"쿠폰내용":"First Coupon","쿠폰번호":Coupon_Code,"쿠폰보유":True}],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
 
 def find_Account():
 
@@ -201,6 +209,11 @@ def Drop_Users():
 
 if __name__ == "__main__":
     # Del_Coupon('ZJwhWPpZp8xhGkyBHv2bxp')
-    xx = Coupon_Data.find({})
-    for i in xx:
+    # xx = Coupon_Data.find({})
+    # for i in xx:
+    #     print(i)
+    # mycustomer.update_many({}, {
+    #     '$set': {'Re_Point': 0}})
+    v = mycustomer.find({})
+    for i in v:
         print(i)
