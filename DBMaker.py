@@ -119,7 +119,7 @@ def Insert_cust(UserName, UserId, phone):
 
     mycustomer.insert_one(
         {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0,'Re_Point': 0, 'Start_Time': str_datetime,
-        'coupon_List':[{"지급일자":str_Days,"쿠폰내용":"First Coupon","쿠폰번호":Coupon_Code,"쿠폰보유":True}],"First_Coupon":True,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
+        'coupon_List':[{"지급일자":str_Days,"쿠폰내용":"First Coupon","쿠폰번호":Coupon_Code,"쿠폰보유":True}],"First_Coupon":False,"1W_Coupon":True,"1M_Coupon":True,'Last_Order_Time':"",'Order_Total_Count':0})
 
 def find_Account():
 
@@ -216,4 +216,5 @@ if __name__ == "__main__":
     #     '$set': {'Re_Point': 0}})
     v = mycustomer.find({})
     for i in v:
-        print(i)
+        if "Re_Point" not in i:
+            print(i)
