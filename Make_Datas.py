@@ -532,7 +532,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "contents": [
                                                     {
                                                         "type": "text",
-                                                        "text": "คะแนนที่ใช้",  # 사용캐쉬
+                                                        "text": "MyCash",  # 사용캐쉬
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "flex": 0

@@ -193,9 +193,6 @@ def Edit_Add_Data(add_Code, Ur):
         '$set': {'Addres_Url': str(Ur)}})
 
 
-
-
-
 def Edit_Point(UserId, point):
     mycustomer.update_one({"UserId": str(UserId)}, {
         '$inc': {'Point': -int(point)}})
