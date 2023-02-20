@@ -559,7 +559,7 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": f"{format(int(use_Repoint + Coupon_Pay), ',d')} ￦",
+                                                        "text": f"{format(int(use_Repoint) + int(Coupon_Pay), ',d')} ￦",
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "align": "end"
