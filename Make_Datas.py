@@ -552,14 +552,14 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 "contents": [
                                                     {
                                                         "type": "text",
-                                                        "text": "คะแนนที่ใช้",  # 사용포인트
+                                                        "text": "ส่วนลดทันที",  # 할인금액
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "flex": 0
                                                     },
                                                     {
                                                         "type": "text",
-                                                        "text": f"{format(int(use_Repoint), ',d')} ￦",
+                                                        "text": f"{format(int(use_Repoint + Coupon_Pay), ',d')} ￦",
                                                         "size": "sm",
                                                         "color": "#1DB446",
                                                         "align": "end"
@@ -567,26 +567,26 @@ def Make_DD(userId, Total_pay, deliver_fee, Total_Count, UserName, Order_Code, S
                                                 ]
                                             },
                                             
-                                            {
-                                                "type": "box",
-                                                "layout": "horizontal",
-                                                "contents": [
-                                                    {
-                                                        "type": "text",
-                                                        "text": "คูปอง",  # 쿠폰
-                                                        "size": "sm",
-                                                        "color": "#1DB446",
-                                                        "flex": 0
-                                                    },
-                                                    {
-                                                        "type": "text",
-                                                        "text": f"{format(int(Coupon_Pay), ',d')} ￦",
-                                                        "size": "sm",
-                                                        "color": "#1DB446",
-                                                        "align": "end"
-                                                    }
-                                                ]
-                                            },
+                                            # {
+                                            #     "type": "box",
+                                            #     "layout": "horizontal",
+                                            #     "contents": [
+                                            #         {
+                                            #             "type": "text",
+                                            #             "text": "คูปอง",  # 쿠폰
+                                            #             "size": "sm",
+                                            #             "color": "#1DB446",
+                                            #             "flex": 0
+                                            #         },
+                                            #         {
+                                            #             "type": "text",
+                                            #             "text": f"{format(int(), ',d')} ￦",
+                                            #             "size": "sm",
+                                            #             "color": "#1DB446",
+                                            #             "align": "end"
+                                            #         }
+                                            #     ]
+                                            # },
                                             {
                                                 "type": "separator",
                                                 "margin": "xxl"
