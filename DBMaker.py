@@ -116,7 +116,7 @@ def Insert_cust(UserName, UserId, phone):
     str_datetime = datetime.strftime(datetime_utc2, format)
     str_Days = datetime.strftime(datetime_utc2, format_Days)
 
-    Insert_CouponTime(str_Days,"First Coupon",Coupon_Code,UserName)
+    Insert_CouponTime(str_Days,"First Coupon",Coupon_Code,UserId)
 
     mycustomer.insert_one(
         {"UserName": UserName, 'UserId': UserId, "address1": "", "address2": "", "phone": phone, "memo": "", 'Point': 0,'Re_Point': 0, 'Start_Time': str_datetime,
