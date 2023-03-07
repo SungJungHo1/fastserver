@@ -45,11 +45,12 @@ def get_Menu(id):
         'Hackle-Id': '0ead553b-2064-4e6e-95f4-9a91c7eb63dd',
         'Hackle-Session-Id': '1678172654234.b583108a',
         'Accept-Encoding': 'gzip, deflate',
-        'X-Datadog-Sampling-Priority': '0'
+        'X-Datadog-Sampling-Priority': '0',
+        'Cookie': '__cf_bm=hGw9Bp5Fdimp5oB6PXkN3RAVGy58RmW_BnwPn93i408-1678178497-0-AfrIUV4bKidat1jJByKEkInZS05BZx23XoGNdLDQbUuV8ac9ppxDhqqXTSgdTfn3xvLm+PoL/fC1trIn//s5k5w=; sessionid=e2556093884fe271db822b528149bc2f'
         }
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
-    response = httpx.get(url, headers=header,verify=False,)
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_photo_menu=android&order_serving_type=delivery&add_one_dish_menu=1&slidable_photo_menu=true&add_liquor_menu=1"
+    response = httpx.get(url, headers=header,verify=False)
     Get_json = response.json()
 
     return Get_json
