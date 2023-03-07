@@ -55,40 +55,40 @@ def Upload_IMG(image):
 
 #     return Get_json
 
-# def get_Menu(id):
-#     header = {   
-        
-#         'Accept': '*/*',
-#         'Accept-Encoding': 'gzip, deflate',
-#         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
-#         'Accept-Language': 'ko-KR,ko;q=0.9',
-#         'Referer': f'https://thailovefood.com/menu/{id}',
-#         }
-
-#     url = f"https://www.thailovefood.com/menu_info/{id}"
-    
-#     response = requests.get(url,headers=header,verify=False)
-#     Get_json = response.json()["data"]
-
-#     return Get_json
-
 def get_Menu(id):
     header = {   
-        'Cookie': 'PHPSESSID=rh3a3euioieoau71nd72s2q76u',
+        
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
         'Accept-Language': 'ko-KR,ko;q=0.9',
-        'Referer': 'https://youduay.com/datacenter/opfnewv3.php'
+        'Referer': f'https://thailovefood.com/menu/{id}',
         }
 
-    url = f"https://youduay.com/datacenter/getajaxfood.php?type=6&sid={id}"
+    url = f"https://www.thailovefood.com/menu_info/{id}"
     
     response = requests.get(url,headers=header,verify=False)
-    print(f"\n\n{response.content}\n\n")
-    Get_json = response.json()
+    Get_json = response.json()["data"]
 
     return Get_json
+
+# def get_Menu(id):
+#     header = {   
+#         'Cookie': 'PHPSESSID=rh3a3euioieoau71nd72s2q76u',
+#         'Accept': '*/*',
+#         'Accept-Encoding': 'gzip, deflate',
+#         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
+#         'Accept-Language': 'ko-KR,ko;q=0.9',
+#         'Referer': 'https://youduay.com/datacenter/opfnewv3.php'
+#         }
+
+#     url = f"https://youduay.com/datacenter/getajaxfood.php?type=6&sid={id}"
+    
+#     response = requests.get(url,headers=header,verify=False)
+#     print(f"\n\n{response.content}\n\n")
+#     Get_json = response.json()
+
+#     return Get_json
 
 def getItemReviews(id, page, count, menu_id):
     header = {"x-apikey": 'iphoneap',
