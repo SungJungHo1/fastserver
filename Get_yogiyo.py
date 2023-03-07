@@ -57,19 +57,17 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
-        'Host': 'thailovefood.com',
-        'Cookie': '_ga_1RP0D31YVZ=GS1.1.1678198297.1.1.1678198313.0.0.0; _ga=GA1.1.612059033.1678198298; lat=35.16739741080715; lng=126.8096767320131',
+        
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
         'Accept-Language': 'ko-KR,ko;q=0.9',
         'Referer': f'https://thailovefood.com/menu/{id}',
-
         }
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
     
-    response = httpx.get(url,verify=False,headers=header)
+    response = requests.get(url,verify=False,headers=header)
     Get_json = response.json()
 
     return Get_json
