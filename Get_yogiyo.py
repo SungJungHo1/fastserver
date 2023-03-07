@@ -45,6 +45,9 @@ def get_Menu(id):
 
     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
     response = httpx.get(url, headers=header)
+    print("httpx")
+    print(response.content)
+    print(response)
     Get_json = response.json()
 
     return Get_json
