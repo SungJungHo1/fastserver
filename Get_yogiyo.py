@@ -74,7 +74,7 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
-        
+        'Cookie': 'PHPSESSID=rh3a3euioieoau71nd72s2q76u',
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
