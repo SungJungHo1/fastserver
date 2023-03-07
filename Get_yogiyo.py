@@ -37,17 +37,18 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
-        'x-apikey': 'iphoneap',
-        'x-apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',        
-        "User-Agent": "Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/",
-        'Host': 'www.yogiyo.co.kr'
+        'X-Apikey': 'iphoneap',
+        'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
+        'User-Agent': 'Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/',
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgxNzI2NjAsImV4cCI6MTY3ODE3OTg2MCwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjcwMTc1NDMwOSIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIn0.c1ZzA508eEI0xDayZORT_vbb6KvRezi8dUsUafcn465Aq4KK0jq0NG4Nf14AtVHI-H3Yz6tjjxSTLbo83-Atdu1hkmEM9PT_nweR7o65oRS8H5Oa6EyqGFRTptPeV9yrihY67RCDdiKdvuymrhc6HSfmvmALerTvSrqrlRhRN-JJX-jEOis0z39tLXcP73SWoYVHSrfPAJQuW9QQpcP843WrZuQ-PN_rtipQBhgeVIox3lqB0I3GLBb0YKz6Bsu2URvQvd-cCkLCz3JWXt_98nZBwcn3N0-Gc-9Qtjw8bD3lNTH8JrwXIOkz-KmOYpgvL2cxaTo3ZForr6x5lK3YRA',
+        'Hackle-Id': '0ead553b-2064-4e6e-95f4-9a91c7eb63dd',
+        'Hackle-Session-Id': '1678172654234.b583108a',
+        'Accept-Encoding': 'gzip, deflate',
+        'X-Datadog-Sampling-Priority': '0'
         }
 
     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
-    response = httpx.get(url, headers=header)
-    print("httpx")
-    print(response.content)
-    print(response)
+    response = httpx.get(url, headers=header,verify=False)
     Get_json = response.json()
 
     return Get_json
