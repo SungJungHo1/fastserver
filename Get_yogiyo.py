@@ -76,7 +76,7 @@ def getItemReviews(id, page, count, menu_id):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
     url = f"https://www.yogiyo.co.kr/api/v1/reviews/{id}/?page={page}&count={count}&sort=time&type=&sort_order=desc&menu_id={menu_id}"
-    response = requests.get(url, headers=header)
+    response = requests.get(url, headers=header,verify=False)
     Get_json = response.json()
     return Get_json
 
