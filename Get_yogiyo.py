@@ -57,7 +57,7 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
-        
+        'Host':'https://www.thailovefood.com',
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
@@ -67,8 +67,8 @@ def get_Menu(id):
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
     
-    response = requests.get(url,verify=False,headers=header)
-    Get_json = response.json()
+    response = requests.get(url,headers=header)
+    Get_json = response.json()["data"]
 
     return Get_json
 
