@@ -2,7 +2,6 @@ import base64
 from importlib.metadata import files
 from fastapi import UploadFile
 import requests
-from urllib.request import Request, urlopen
 import json
 from Ordersdatas import *
 from Make_Datas import *
@@ -192,7 +191,7 @@ def Upload_CF_IMG(image):
 if __name__ == "__main__":
     
     # Upload_CF_IMG()
-    print(get_Menu(374944))
+    print(get_Menu(261363))
     # delivery_fee = 3000
     # datas = Push_Message("U812329a68632f4237dea561c6ba1d413",
     #                      '크턱', 3000, orderdata, cart2, 1010100, 10101010, 3000)
