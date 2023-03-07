@@ -35,22 +35,41 @@ def Upload_IMG(image):
     return Get_json['data']["url"]
 
 
+# def get_Menu(id):
+#     header = {   
+#         'Host': 'www.yogiyo.co.kr',
+#         'X-Apikey': 'iphoneap',
+#         'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
+#         'User-Agent': 'Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/',
+#         'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgxNzI2NjAsImV4cCI6MTY3ODE3OTg2MCwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjcwMTc1NDMwOSIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIn0.c1ZzA508eEI0xDayZORT_vbb6KvRezi8dUsUafcn465Aq4KK0jq0NG4Nf14AtVHI-H3Yz6tjjxSTLbo83-Atdu1hkmEM9PT_nweR7o65oRS8H5Oa6EyqGFRTptPeV9yrihY67RCDdiKdvuymrhc6HSfmvmALerTvSrqrlRhRN-JJX-jEOis0z39tLXcP73SWoYVHSrfPAJQuW9QQpcP843WrZuQ-PN_rtipQBhgeVIox3lqB0I3GLBb0YKz6Bsu2URvQvd-cCkLCz3JWXt_98nZBwcn3N0-Gc-9Qtjw8bD3lNTH8JrwXIOkz-KmOYpgvL2cxaTo3ZForr6x5lK3YRA',
+#         'Hackle-Id': '0ead553b-2064-4e6e-95f4-9a91c7eb63dd',
+#         'Hackle-Session-Id': '1678172654234.b583108a',
+#         'Accept-Encoding': 'gzip, deflate',
+#         'X-Datadog-Sampling-Priority': '0',
+#         'Cookie': '__cf_bm=hGw9Bp5Fdimp5oB6PXkN3RAVGy58RmW_BnwPn93i408-1678178497-0-AfrIUV4bKidat1jJByKEkInZS05BZx23XoGNdLDQbUuV8ac9ppxDhqqXTSgdTfn3xvLm+PoL/fC1trIn//s5k5w=; sessionid=e2556093884fe271db822b528149bc2f'
+#         }
+
+#     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_photo_menu=android&order_serving_type=delivery&add_one_dish_menu=1&slidable_photo_menu=true&add_liquor_menu=1"
+#     response = httpx.get(url, headers=header,verify=False)
+#     Get_json = response.json()
+
+#     return Get_json
+
 def get_Menu(id):
     header = {   
-        'Host': 'www.yogiyo.co.kr',
-        'X-Apikey': 'iphoneap',
-        'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
-        'User-Agent': 'Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/',
-        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgxNzI2NjAsImV4cCI6MTY3ODE3OTg2MCwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjcwMTc1NDMwOSIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIn0.c1ZzA508eEI0xDayZORT_vbb6KvRezi8dUsUafcn465Aq4KK0jq0NG4Nf14AtVHI-H3Yz6tjjxSTLbo83-Atdu1hkmEM9PT_nweR7o65oRS8H5Oa6EyqGFRTptPeV9yrihY67RCDdiKdvuymrhc6HSfmvmALerTvSrqrlRhRN-JJX-jEOis0z39tLXcP73SWoYVHSrfPAJQuW9QQpcP843WrZuQ-PN_rtipQBhgeVIox3lqB0I3GLBb0YKz6Bsu2URvQvd-cCkLCz3JWXt_98nZBwcn3N0-Gc-9Qtjw8bD3lNTH8JrwXIOkz-KmOYpgvL2cxaTo3ZForr6x5lK3YRA',
-        'Hackle-Id': '0ead553b-2064-4e6e-95f4-9a91c7eb63dd',
-        'Hackle-Session-Id': '1678172654234.b583108a',
+        'Host': 'thailovefood.com',
+        'Cookie': '_ga_1RP0D31YVZ=GS1.1.1678198297.1.1.1678198313.0.0.0; _ga=GA1.1.612059033.1678198298; lat=35.16739741080715; lng=126.8096767320131',
+        'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
-        'X-Datadog-Sampling-Priority': '0',
-        'Cookie': '__cf_bm=hGw9Bp5Fdimp5oB6PXkN3RAVGy58RmW_BnwPn93i408-1678178497-0-AfrIUV4bKidat1jJByKEkInZS05BZx23XoGNdLDQbUuV8ac9ppxDhqqXTSgdTfn3xvLm+PoL/fC1trIn//s5k5w=; sessionid=e2556093884fe271db822b528149bc2f'
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
+        'Accept-Language': 'ko-KR,ko;q=0.9',
+        'Referer': 'https://thailovefood.com/menu/311101',
+
         }
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_photo_menu=android&order_serving_type=delivery&add_one_dish_menu=1&slidable_photo_menu=true&add_liquor_menu=1"
-    response = httpx.get(url, headers=header,verify=False)
+    url = f"https://www.thailovefood.com/menu_info/{id}"
+    
+    response = httpx.get(url,verify=False,headers=header)
     Get_json = response.json()
 
     return Get_json
