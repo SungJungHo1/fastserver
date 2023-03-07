@@ -45,7 +45,7 @@ def get_Menu(id):
         "User-Agent": "Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/",
         }
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/1095231/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
     response = httpx.get(url, headers=header,verify=False,)
     Get_json = response.json()
 
