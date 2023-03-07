@@ -2,11 +2,15 @@ import base64
 from importlib.metadata import files
 from fastapi import UploadFile
 import requests
+from urllib.request import Request, urlopen
 import json
 from Ordersdatas import *
 from Make_Datas import *
 from DBMaker import *
 from AccessToken import *
+import cloudscraper
+import cfscrape
+import httpx
 
 
 def get_Yogiyo(category, lat, lng, own_delivery_only):
@@ -35,12 +39,16 @@ def Upload_IMG(image):
 
 
 def get_Menu(id):
-    header = {"x-apikey": 'iphoneap',
-              "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
+    header = {   
+        'x-apikey': 'iphoneap',
+        'x-apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',        
+        "User-Agent": "Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/",
+        }
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
-    response = requests.get(url, headers=header)
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/1095231/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
+    response = httpx.get(url, headers=header,verify=False,)
     Get_json = response.json()
+
     return Get_json
 
 def getItemReviews(id, page, count, menu_id):
@@ -185,7 +193,8 @@ def Upload_CF_IMG(image):
 
 if __name__ == "__main__":
     
-    Upload_CF_IMG()
+    # Upload_CF_IMG()
+    print(get_Menu(374944))
     # delivery_fee = 3000
     # datas = Push_Message("U812329a68632f4237dea561c6ba1d413",
     #                      '크턱', 3000, orderdata, cart2, 1010100, 10101010, 3000)
