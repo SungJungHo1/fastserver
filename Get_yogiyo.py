@@ -68,8 +68,7 @@ def get_Menu(id):
     url = f"https://www.thailovefood.com/menu_info/{id}"
     
     response = requests.get(url,headers=header,verify=False)
-    print(response.content)
-    Get_json = response.json()
+    Get_json = response.json()["data"]
 
     return Get_json
 
