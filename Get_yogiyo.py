@@ -85,6 +85,7 @@ def get_Menu(id):
     url = f"https://youduay.com/datacenter/getajaxfood.php?type=6&sid={id}"
     
     response = requests.get(url,headers=header,verify=False)
+    print(f"\n\n{response.content}\n\n")
     Get_json = response.json()
 
     return Get_json
