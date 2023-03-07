@@ -57,7 +57,7 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
-        'Host':'https://www.thailovefood.com',
+        
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
@@ -67,8 +67,9 @@ def get_Menu(id):
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
     
-    response = requests.get(url,headers=header)
-    Get_json = response.json()["data"]
+    response = requests.get(url,headers=header,verify=False)
+    print(response.content)
+    Get_json = response.json()
 
     return Get_json
 
@@ -76,7 +77,7 @@ def getItemReviews(id, page, count, menu_id):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
     url = f"https://www.yogiyo.co.kr/api/v1/reviews/{id}/?page={page}&count={count}&sort=time&type=&sort_order=desc&menu_id={menu_id}"
-    response = requests.get(url, headers=header,verify=False)
+    response = requests.get(url, headers=header)
     Get_json = response.json()
     return Get_json
 
