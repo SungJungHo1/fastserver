@@ -37,6 +37,7 @@ def Upload_IMG(image):
 
 def get_Menu(id):
     header = {   
+        'Host': 'www.yogiyo.co.kr',
         'X-Apikey': 'iphoneap',
         'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
         'User-Agent': 'Android/SM-G965N/7.1.2/yogiyo-android-7.8.0/',
@@ -48,7 +49,7 @@ def get_Menu(id):
         }
 
     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?add_photo_menu=android&add_one_dish_menu=true&order_serving_type=delivery"
-    response = httpx.get(url, headers=header,verify=False)
+    response = httpx.get(url, headers=header,verify=False,)
     Get_json = response.json()
 
     return Get_json
