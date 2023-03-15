@@ -70,7 +70,7 @@ def get_Menu(id):
         }
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
-    url2 = f"http://yogiyofind.ddns.net/getMenus?{id}"
+    url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
     try:
         response = requests.get(url,headers=header,verify=False,timeout=2)
     except:
