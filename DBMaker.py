@@ -20,13 +20,26 @@ service = mydb['service']
 WaitTime = mydb['WaitTime']
 Refund_Data = mydb['Refund_Data']
 Coupon_Data = mydb['Coupon_Data']
+BackUp_Data = mydb['BackUp_Data']
 
 def Use_Coupon(쿠폰번호):
     Coupon_Data.update_one({'쿠폰번호':str(쿠폰번호)},{"$set":{"쿠폰사용여부":True}})
 
 def Insert_WaitTime(Time,message):
     WaitTime.insert_one({"Time":Time,"message":message})
+
+def data_BackUp(datas,Code):
+    finds = BackUp_Data.find_one({'Code':Code})
     
+    if finds == None:
+        BackUp_Data.insert_one({'Code':Code,"data":datas})
+
+def find_BackUp_Datas(id):
+    data = BackUp_Data.find_one({'Code':id})
+    if data != None:
+        return data["data"]
+    else :
+        return data
 
 def Insert_Address(add1,add2,phone,add_Name,UserName,UserId,friend):
     add_Code = shortuuid.uuid()
@@ -216,8 +229,10 @@ if __name__ == "__main__":
     #     print(i)
     # mycustomer.update_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"}, {
     #     '$set': {'Re_Point': 10000}})
-    v = mycustomer.find({})
+    # v = mycustomer.find({})
+    print(find_BackUp_Datas(1212))
+    # for i in v:
+    #     if "Re_Point" not in i:
+    #         print(i)
+    # data_BackUp("asas",261363)
     
-    for i in v:
-        if "Re_Point" not in i:
-            print(i)

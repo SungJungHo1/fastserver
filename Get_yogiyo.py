@@ -74,26 +74,35 @@ def Upload_IMG(image):
     
 #     return Get_json
 
-# def get_Menu(id):
-#     header = {   
+def get_Menu(id):
+    header = {   
         
-#         'Accept': '*/*',
-#         'Accept-Encoding': 'gzip, deflate',
-#         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
-#         'Accept-Language': 'ko-KR,ko;q=0.9',
-#         'Referer': f'https://thailovefood.com/menu/{id}',
-#         }
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
+        'Accept-Language': 'ko-KR,ko;q=0.9',
+        'Referer': f'https://thailovefood.com/menu/{id}',
+        }
 
-#     url = f"https://www.thailovefood.com/menu_info/{id}"
-#     url2 = f"http://3.39.0.137/getMenus?id={id}"
-#     try:
-#         response = requests.get(url,headers=header,verify=False,timeout=3)
-#         Get_json = response.json()["data"]
-#     except:
-#         response = requests.get(url2)
-#         Get_json = response.json()
+    url = f"https://www.thailovefood.com/menu_info/{id}"
+    url2 = f"http://3.39.0.137/getMenus?id={id}"
+    BackUp_Datas = find_BackUp_Datas(id)
+    
+    if BackUp_Datas != None:
+        Get_json = BackUp_Datas
+        print("백업")
+    else:
 
-#     return Get_json
+        try:
+            response = requests.get(url,headers=header,verify=False,timeout=5)
+            Get_json = response.json()["data"]
+            data_BackUp(Get_json,id)
+        except:
+
+            response = requests.get(url2)
+            Get_json = response.json()
+
+    return Get_json
 
 # def get_Menu(id):
 
@@ -118,42 +127,49 @@ def Upload_IMG(image):
 #         }
 
 #     url = f"https://youduay.com/datacenter/getajaxfood.php?type=6&sid={id}"
-
-#     scraper = cloudscraper.create_scraper()
-#     response = scraper.get(url, headers=header)
-#     Get_json = response.json()
+#     try:
+#         scraper = cloudscraper.create_scraper()
+#         response = scraper.get(url, headers=header)
+#         Get_json = response.json()
+#         print("정상")
+#     except:
+        
+#         Get_json = find_BackUp_Datas(id)
+#         print('에러')
 
 #     return Get_json
 
-def get_Menu(id):
-    param = {
-        "add_photo_menu": "android",
-        "add_one_dish_menu": "true",
-        "order_serving_type": "delivery",
-    }
-    header = {
-            'Hackle-Session-Id': '1678847517095.08b248b4',
-            'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg4NDc1MjEsImV4cCI6MTY3ODg1NDcyMSwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjY5NzkzMTI5NCIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIiwidXNlcl9pZCI6IjM1MjE2NzQyIn0.CBRVBE5vj9cAzVPO4KChu9qq2fdII5I7LCn75WsLzgoNNTUMWOwk7fANn6arLCT0eII7a--O6lvfiNkAQfNuiCW9SuKBO-pzFwfdNw14XJftGILtq5o_zvp8Gee4qmGCg5V-V83b1Tw6ZirQ929v5nAsQoyaZX2gpmP8j_cxkIcEw8Lkr9K5HQDLLvnux-MO9Ikxvmwyi7g6L-LUImKL-40S5m7QEBRAVFizt2yvRHfMfPYHPZ2r0vkhJfc1JBn_hAzGb8cRW8posxO-TE0XJ9-3JMyKyCeDFU1zyvBp1EeENJWkBdhanpj2WxYdLbEtTOALml1SGJIqFRDjeUnAoA',
-            'Accept': '*/*',
-            'X-Datadog-Sampling-Priority': '0',
-            'Hackle-Id': '4A6D6F65-E1F7-4432-812C-8B7190DFFB34',
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept-Language': 'ko-KR;q=1.0, en-KR;q=0.9',
-            'X-Apikey': 'iphoneap',
-            'User-Agent':  'iOS/iPhone13,2/16.3.1/yogiyo-ios-7.8.0',
-            'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
-            'X-Datadog-Origin': 'rum'
-        }
-    cookie = {
-            "__cf_bm": "PqhT6j5QvR.MPnPP0CQ1PaUlqXJhHWhjmtEcVJL9dZQ-1678854281-0-AVWPZHm1LH2NSPwTfKmekWH1mABhV7e0ei+aB5D5vsNmoCM+H4SDR0C5QhdMAYJQKsHnly9vFT/g3PzzFXGQwgA=",
-            "optimizelyEndUserId": "oeu1678854281263r0.7429886281832376",
-            "sessionid": "15cd6a6637cbb0dce55f23b95d748c9a",
-            "RestaurantListCookieTrigger": "true",
-            "RestaurantMenuCookieTrigger": "true",
-        }
-    response = httpx.get(f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/", params=param, headers=header, cookies=cookie, verify=False)
-    Get_json = response.json()
-    return Get_json
+# def get_Menu(id):
+#     param = {
+#         "add_photo_menu": "android",
+#         "add_one_dish_menu": "true",
+#         "order_serving_type": "delivery",
+#     }
+#     header = {
+#             'Hackle-Session-Id': '1678847517095.08b248b4',
+#             'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg4NDc1MjEsImV4cCI6MTY3ODg1NDcyMSwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjY5NzkzMTI5NCIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIiwidXNlcl9pZCI6IjM1MjE2NzQyIn0.CBRVBE5vj9cAzVPO4KChu9qq2fdII5I7LCn75WsLzgoNNTUMWOwk7fANn6arLCT0eII7a--O6lvfiNkAQfNuiCW9SuKBO-pzFwfdNw14XJftGILtq5o_zvp8Gee4qmGCg5V-V83b1Tw6ZirQ929v5nAsQoyaZX2gpmP8j_cxkIcEw8Lkr9K5HQDLLvnux-MO9Ikxvmwyi7g6L-LUImKL-40S5m7QEBRAVFizt2yvRHfMfPYHPZ2r0vkhJfc1JBn_hAzGb8cRW8posxO-TE0XJ9-3JMyKyCeDFU1zyvBp1EeENJWkBdhanpj2WxYdLbEtTOALml1SGJIqFRDjeUnAoA',
+#             'Accept': '*/*',
+#             'X-Datadog-Sampling-Priority': '0',
+#             'Hackle-Id': '4A6D6F65-E1F7-4432-812C-8B7190DFFB34',
+#             'Accept-Encoding': 'gzip, deflate',
+#             'Accept-Language': 'ko-KR;q=1.0, en-KR;q=0.9',
+#             'X-Apikey': 'iphoneap',
+#             'User-Agent':  'iOS/iPhone13,2/16.3.1/yogiyo-ios-7.8.0',
+#             'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
+#             'X-Datadog-Origin': 'rum'
+#         }
+#     cookie = {
+#             "__cf_bm": "PqhT6j5QvR.MPnPP0CQ1PaUlqXJhHWhjmtEcVJL9dZQ-1678854281-0-AVWPZHm1LH2NSPwTfKmekWH1mABhV7e0ei+aB5D5vsNmoCM+H4SDR0C5QhdMAYJQKsHnly9vFT/g3PzzFXGQwgA=",
+#             "optimizelyEndUserId": "oeu1678854281263r0.7429886281832376",
+#             "sessionid": "15cd6a6637cbb0dce55f23b95d748c9a",
+#             "RestaurantListCookieTrigger": "true",
+#             "RestaurantMenuCookieTrigger": "true",
+#         }
+#     response = httpx.get(f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/", params=param, headers=header, cookies=cookie, verify=False)
+#     Get_json = response.json()
+
+
+#     return Get_json
 
 def getItemReviews(id, page, count, menu_id):
     header = {"x-apikey": 'iphoneap',
