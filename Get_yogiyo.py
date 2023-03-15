@@ -61,25 +61,36 @@ def Upload_IMG(image):
     
 #     return Get_json
 
-def get_Menu(id):
-    header = {   
+# def get_Menu(id):
+#     header = {   
         
-        'Accept': '*/*',
-        'Accept-Encoding': 'gzip, deflate',
-        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
-        'Accept-Language': 'ko-KR,ko;q=0.9',
-        'Referer': f'https://thailovefood.com/menu/{id}',
-        }
+#         'Accept': '*/*',
+#         'Accept-Encoding': 'gzip, deflate',
+#         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
+#         'Accept-Language': 'ko-KR,ko;q=0.9',
+#         'Referer': f'https://thailovefood.com/menu/{id}',
+#         }
 
-    url = f"https://www.thailovefood.com/menu_info/{id}"
-    url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
-    try:
-        response = requests.get(url,headers=header,verify=False,timeout=2)
-    except:
-        response = requests.get(url2,headers=header,verify=False)
+#     url = f"https://www.thailovefood.com/menu_info/{id}"
+#     url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
+#     try:
+#         response = requests.get(url,headers=header,verify=False,timeout=2)
+#     except:
+#         response = requests.get(url2,headers=header,verify=False)
+#     Get_json = response.json()
+
+#     return Get_json
+
+def get_Menu(id):
+
+    url = f"http://3.39.0.137/getMenus?id={id}"
+    
+    response = requests.get(url)
     Get_json = response.json()
 
     return Get_json
+
+
 
 # def get_Menu(id):
 #     header = {   
