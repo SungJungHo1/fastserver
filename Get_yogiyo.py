@@ -90,7 +90,7 @@ def get_Menu(id):
     
     if BackUp_Datas != None:
         Get_json = BackUp_Datas
-        print("백업")
+        
     else:
 
         try:
