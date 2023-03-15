@@ -77,7 +77,7 @@ def get_Menu(id):
     url = f"https://www.thailovefood.com/menu_info/{id}"
     url2 = f"http://3.39.0.137/getMenus?id={id}"
     try:
-        response = requests.get(url,headers=header,verify=False,timeout=2)
+        response = requests.get(url,headers=header,verify=False,timeout=3)
     except:
         response = requests.get(url2)
     Get_json = response.json()
