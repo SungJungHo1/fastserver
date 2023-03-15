@@ -85,7 +85,7 @@ def get_Menu(id):
         }
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
-    url2 = f"http://3.39.0.137/getMenus?id={id}"
+    url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
     BackUp_Datas = find_BackUp_Datas(id)
     
     if BackUp_Datas != None:

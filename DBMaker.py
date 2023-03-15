@@ -230,7 +230,12 @@ if __name__ == "__main__":
     # mycustomer.update_one({'UserId':"Ua80cd1a19a12cb88657950e300a68594"}, {
     #     '$set': {'Re_Point': 10000}})
     # v = mycustomer.find({})
-    print(find_BackUp_Datas(1212))
+    # print(find_BackUp_Datas(1212))
+    xx = BackUp_Data.find({})
+    Li = []
+    for i in xx:
+        Li.append(i)
+    print(len(Li))
     # for i in v:
     #     if "Re_Point" not in i:
     #         print(i)
