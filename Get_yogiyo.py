@@ -78,9 +78,10 @@ def get_Menu(id):
     url2 = f"http://3.39.0.137/getMenus?id={id}"
     try:
         response = requests.get(url,headers=header,verify=False,timeout=3)
+        Get_json = response.json()["data"]
     except:
         response = requests.get(url2)
-    Get_json = response.json()
+        Get_json = response.json()
 
     return Get_json
 
