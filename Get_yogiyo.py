@@ -36,29 +36,30 @@ def Upload_IMG(image):
     return Get_json['data']["url"]
 
 
-# def get_Menu(id):
-#     header = {   
-#         'Host': 'www.yogiyo.co.kr',
-#         'Cookie': '__cf_bm=5aeAREBR5fRXs7Ny7SABlTqWuuvu85RezKVucwE5LNw-1678847629-0-AektfUFUFSTDBFhUquxm1dJZ+IgC8DGEO+jwbdEmw8Qxng3mhYYlI3YyCN/ajC88MI8TYTctqL4LxYAmYY7gObs=; sessionid=47d5abb29cb3cde99a5a547b96c94099',
-#         'Hackle-Session-Id': '1678847517095.08b248b4',
-#         'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg4NDc1MjEsImV4cCI6MTY3ODg1NDcyMSwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjY5NzkzMTI5NCIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIiwidXNlcl9pZCI6IjM1MjE2NzQyIn0.CBRVBE5vj9cAzVPO4KChu9qq2fdII5I7LCn75WsLzgoNNTUMWOwk7fANn6arLCT0eII7a--O6lvfiNkAQfNuiCW9SuKBO-pzFwfdNw14XJftGILtq5o_zvp8Gee4qmGCg5V-V83b1Tw6ZirQ929v5nAsQoyaZX2gpmP8j_cxkIcEw8Lkr9K5HQDLLvnux-MO9Ikxvmwyi7g6L-LUImKL-40S5m7QEBRAVFizt2yvRHfMfPYHPZ2r0vkhJfc1JBn_hAzGb8cRW8posxO-TE0XJ9-3JMyKyCeDFU1zyvBp1EeENJWkBdhanpj2WxYdLbEtTOALml1SGJIqFRDjeUnAoA',
-#         'Accept': '*/*',
-#         'X-Datadog-Sampling-Priority': '0',
-#         'Hackle-Id': '4A6D6F65-E1F7-4432-812C-8B7190DFFB34',
-#         'Accept-Encoding': 'gzip, deflate',
-#         'Accept-Language': 'ko-KR;q=1.0, en-KR;q=0.9',
-#         'X-Apikey': 'iphoneap',
-#         'User-Agent': 'iOS/iPhone13,2/16.3.1/yogiyo-ios-7.8.0',
-#         'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
-#         'X-Datadog-Origin': 'rum'
-#     }
+def get_Menu(id):
+    header = {   
+        'Host': 'www.yogiyo.co.kr',
+        'Cookie': '__cf_bm=5aeAREBR5fRXs7Ny7SABlTqWuuvu85RezKVucwE5LNw-1678847629-0-AektfUFUFSTDBFhUquxm1dJZ+IgC8DGEO+jwbdEmw8Qxng3mhYYlI3YyCN/ajC88MI8TYTctqL4LxYAmYY7gObs=; sessionid=47d5abb29cb3cde99a5a547b96c94099',
+        'Hackle-Session-Id': '1678847517095.08b248b4',
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Nzg4NDc1MjEsImV4cCI6MTY3ODg1NDcyMSwicGxhdGZvcm0iOiJZR1kiLCJyb2xlIjoidXNlciIsInN1Yl9pZCI6IjY5NzkzMTI5NCIsImJhc2VfdXJsIjoiaHR0cHM6Ly93d3cueW9naXlvLmNvLmtyIiwidXNlcl9pZCI6IjM1MjE2NzQyIn0.CBRVBE5vj9cAzVPO4KChu9qq2fdII5I7LCn75WsLzgoNNTUMWOwk7fANn6arLCT0eII7a--O6lvfiNkAQfNuiCW9SuKBO-pzFwfdNw14XJftGILtq5o_zvp8Gee4qmGCg5V-V83b1Tw6ZirQ929v5nAsQoyaZX2gpmP8j_cxkIcEw8Lkr9K5HQDLLvnux-MO9Ikxvmwyi7g6L-LUImKL-40S5m7QEBRAVFizt2yvRHfMfPYHPZ2r0vkhJfc1JBn_hAzGb8cRW8posxO-TE0XJ9-3JMyKyCeDFU1zyvBp1EeENJWkBdhanpj2WxYdLbEtTOALml1SGJIqFRDjeUnAoA',
+        'Accept': '*/*',
+        'X-Datadog-Sampling-Priority': '0',
+        'Hackle-Id': '4A6D6F65-E1F7-4432-812C-8B7190DFFB34',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'ko-KR;q=1.0, en-KR;q=0.9',
+        'X-Apikey': 'iphoneap',
+        'User-Agent': 'iOS/iPhone13,2/16.3.1/yogiyo-ios-7.8.0',
+        'X-Apisecret': 'fe5183cc3dea12bd0ce299cf110a75a2',
+        'X-Datadog-Origin': 'rum'
+    }
 
-#     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_liquor_menu=1&add_one_dish_menu=0&add_photo_menu=ios3x&additional_discount_per_menu=1&order_serving_type=delivery&restaurant_id=1182005&slidable_photo_menu=true"
+    url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_liquor_menu=1&add_one_dish_menu=0&add_photo_menu=ios3x&additional_discount_per_menu=1&order_serving_type=delivery&restaurant_id=1182005&slidable_photo_menu=true"
     
-#     response = httpx.get(url, headers=header,verify=False)
-#     Get_json = response.json()
+    scraper = cloudscraper.create_scraper()
+    response = scraper.get(url, headers=header)
+    Get_json = response.json()
     
-#     return Get_json
+    return Get_json
 
 # def get_Menu(id):
 #     header = {   
