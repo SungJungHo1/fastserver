@@ -61,16 +61,16 @@ def Upload_IMG(image):
 
 
 #     url = f"https://www.yogiyo.co.kr/api/v1/restaurants/{id}/menu/?additional_discount_per_menu=1&add_liquor_menu=1&add_one_dish_menu=0&add_photo_menu=ios3x&additional_discount_per_menu=1&order_serving_type=delivery&restaurant_id=1182005&slidable_photo_menu=true"
-#     while True:
-#         try:
-#             scraper = cloudscraper.create_scraper()
-#             response = scraper.get(url, headers=header, cookies=cookie)
-#             Get_json = response.json()
-#             break
-#         except:
-#             pass
-#     # response = httpx.get(url, headers=header,verify=False)
-#     # Get_json = response.json()
+#     # while True:
+#     #     try:
+#     #         scraper = cloudscraper.create_scraper()
+#     #         response = scraper.get(url, headers=header, cookies=cookie)
+#     #         Get_json = response.json()
+#     #         break
+#     #     except:
+#     #         pass
+#     response = httpx.get(url, headers=header,verify=False)
+#     Get_json = response.json()
     
 #     return Get_json
 
@@ -86,21 +86,21 @@ def get_Menu(id):
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
     url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
-    BackUp_Datas = find_BackUp_Datas(id)
+    # BackUp_Datas = find_BackUp_Datas(id)
     
-    if BackUp_Datas != None:
-        Get_json = BackUp_Datas
+    # if BackUp_Datas != None:
+    #     Get_json = BackUp_Datas
         
-    else:
+    # else:
 
-        try:
-            response = requests.get(url,headers=header,verify=False,timeout=5)
-            Get_json = response.json()["data"]
-            data_BackUp(Get_json,id)
-        except:
+    try:
+        response = requests.get(url,headers=header,verify=False,timeout=5)
+        Get_json = response.json()["data"]
+        data_BackUp(Get_json,id)
+    except:
 
-            response = requests.get(url2)
-            Get_json = response.json()
+        response = requests.get(url2)
+        Get_json = response.json()
 
     return Get_json
 
