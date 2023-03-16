@@ -75,16 +75,16 @@ def Upload_IMG(image):
 #     return Get_json
 
 def get_Menu(id):
-    # header = {   
+    header = {   
         
-    #     'Accept': '*/*',
-    #     'Accept-Encoding': 'gzip, deflate',
-    #     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
-    #     'Accept-Language': 'ko-KR,ko;q=0.9',
-    #     'Referer': f'https://thailovefood.com/menu/{id}',
-    #     }
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate',
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari Line/13.2.1 LIFF',
+        'Accept-Language': 'ko-KR,ko;q=0.9',
+        'Referer': f'https://thailovefood.com/menu/{id}',
+        }
 
-    # url = f"https://www.thailovefood.com/menu_info/{id}"
+    url = f"https://www.thailovefood.com/menu_info/{id}"
     url2 = f"http://175.207.45.35/getMenus?id={id}"
     BackUp_Datas = find_BackUp_Datas(id)
     
@@ -92,19 +92,16 @@ def get_Menu(id):
         Get_json = BackUp_Datas
         
     else:
-        
-        response = requests.get(url2)
-        Get_json = response.json()
-        data_BackUp(Get_json,id)
 
-    # try:
-    #     response = requests.get(url,headers=header,verify=False,timeout=10)
-    #     Get_json = response.json()["data"]
-    #     data_BackUp(Get_json,id)
-    # except:
+        try:
+            response = requests.get(url,headers=header,verify=False,timeout=10)
+            Get_json = response.json()["data"]
+            data_BackUp(Get_json,id)
+        except:
 
-    #     response = requests.get(url2)
-    #     Get_json = response.json()
+            response = requests.get(url2)
+            Get_json = response.json()
+            data_BackUp(Get_json,id)
 
     return Get_json
 
