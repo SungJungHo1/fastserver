@@ -86,22 +86,22 @@ def get_Menu(id):
 
     url = f"https://www.thailovefood.com/menu_info/{id}"
     url2 = f"http://yogiyofind.ddns.net/getMenus?id={id}"
-    BackUp_Datas = find_BackUp_Datas(id)
+    # BackUp_Datas = find_BackUp_Datas(id)
     
-    if BackUp_Datas != None:
-        Get_json = BackUp_Datas
+    # if BackUp_Datas != None:
+    #     Get_json = BackUp_Datas
         
-    else:
+    # else:
 
-        try:
-            response = requests.get(url,headers=header,verify=False,timeout=2)
-            Get_json = response.json()["data"]
-            data_BackUp(Get_json,id)
-        except:
+    try:
+        response = requests.get(url,headers=header,verify=False,timeout=2)
+        Get_json = response.json()["data"]
+        data_BackUp(Get_json,id)
+    except:
 
-            response = requests.get(url2)
-            Get_json = response.json()
-            data_BackUp(Get_json,id)
+        response = requests.get(url2)
+        Get_json = response.json()
+        data_BackUp(Get_json,id)
 
     return Get_json
 
