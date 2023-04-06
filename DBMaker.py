@@ -231,6 +231,7 @@ if __name__ == "__main__":
     #     '$set': {'Re_Point': 10000}})
     # v = mycustomer.find({})
     # print(find_BackUp_Datas(1212))
+    BackUp_Data.delete_many({})
     xx = BackUp_Data.find({})
     Li = []
     for i in xx:

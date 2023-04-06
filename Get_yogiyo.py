@@ -96,12 +96,12 @@ def get_Menu(id):
     try:
         response = requests.get(url,headers=header,verify=False,timeout=2)
         Get_json = response.json()["data"]
-        data_BackUp(Get_json,id)
+        # data_BackUp(Get_json,id)
     except:
 
         response = requests.get(url2)
         Get_json = response.json()
-        data_BackUp(Get_json,id)
+        # data_BackUp(Get_json,id)
 
     return Get_json
 
