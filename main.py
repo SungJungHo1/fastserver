@@ -145,7 +145,7 @@ def UpLoad_IMG(img: UploadFile, Order_Code):
 
 
 def UpLoad_Add_IMG(img: UploadFile, add_Code):
-    IMG_URL = Upload_IMG(img.file.read())
+    IMG_URL = Upload_CF_IMG(img.file.read())
     Edit_Add_Data(add_Code, IMG_URL)
 
 
