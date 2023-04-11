@@ -208,8 +208,10 @@ def Find_Top(lat, lng):
     # url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&lat={lat}&lng={lng}&order=review_avg&page=0&search="
     response = requests.get(url, headers=header)
     Get_json = response.json()
-    Get_json['restaurants']
-    Return_Data = {'restaurants':Get_json['restaurants'][0:15]}
+    if 'restaurants' in Get_json:
+        Return_Data = {'restaurants':Get_json['restaurants'][0:15]}
+    else :
+        Return_Data = {'restaurants': []}
     return Return_Data
 
 
