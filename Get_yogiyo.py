@@ -1,5 +1,4 @@
 import base64
-from importlib.metadata import files
 from fastapi import UploadFile
 import requests
 import json
@@ -96,7 +95,7 @@ def get_Menu(id):
 
     try:
         response = requests.get(url3,headers=header,verify=False,timeout=2)
-        Get_json = response.json()["data"]
+        Get_json = response.json()
         # data_BackUp(Get_json,id)
     except:
 
@@ -232,10 +231,10 @@ def update_point(UserId,Usepoint):
 def update_Repoint(UserId,Usepoint):
     Edit_RePoint(UserId,Usepoint)
 
-def Push_Message(UserId, UserName, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
+def Push_Message(UserId, UserName, delivery_fee,origin_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
 
     Order_Code = Insert_Data(
-        UserName, UserId, delivery_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url=thumbnail_url,use_point=use_point,
+        UserName, UserId, delivery_fee,origin_fee, OrderData, cart, lan, lng, Service_Money,new_cus,thumbnail_url=thumbnail_url,use_point=use_point,
         Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code,use_Repoint=use_Repoint)
 
     options_fee = 0

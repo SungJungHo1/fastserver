@@ -110,6 +110,7 @@ def pushOrder(
         userName="66",
         new_cus:bool=False,
         delivery_fee="66",
+        origin_fee="5000",
         Service_Money="66",
         ImageIn="66",
         lan=Form(...),
@@ -125,7 +126,7 @@ def pushOrder(
         background_tasks: BackgroundTasks = None
     ):
     
-    datas, Order_Code = Push_Message(userId, userName, delivery_fee,
+    datas, Order_Code = Push_Message(userId, userName, delivery_fee,origin_fee,
                                      json.loads(OrderData), json.loads(cart), lan, lng, Service_Money,new_cus = new_cus,thumbnail_url = thumbnail_url,use_point=use_point,
                                      Coupon_Pay=Coupon_Pay,Coupon_Code=Coupon_Code,use_Repoint = use_Repoint)
     update_Repoint(userId,use_Repoint)

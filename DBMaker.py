@@ -74,7 +74,7 @@ def Add_Order_Log(UserId):
 def Del_Coupon(userId,Coupon_Code):
     mycustomer.update_one({"UserId":userId},{ "$pull": { "coupon_List": {"쿠폰번호":Coupon_Code} }})
 
-def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
+def Insert_Data(UserName, UserId, Delivery_Fee,origin_fee, Order_Data, Cart, lan, lng, Service_Money,new_cus,thumbnail_url,use_point,Coupon_Pay,Coupon_Code,use_Repoint):
     # z = randrange(0, 900)
     Order_Code = shortuuid.uuid()
 
@@ -93,7 +93,7 @@ def Insert_Data(UserName, UserId, Delivery_Fee, Order_Data, Cart, lan, lng, Serv
     mycol.insert_one({"Order_Code": Order_Code, "UserName": UserName, "UserId": UserId,
                     'use_point':use_point,
                     'use_Repoint':use_Repoint,
-                     "delivery_fee": Delivery_Fee, "Order_Data": Order_Data, "Cart": Cart,
+                     "delivery_fee": Delivery_Fee,'origin_fee':origin_fee, "Order_Data": Order_Data, "Cart": Cart,
                       'Service_Money': Service_Money, "Order_End": True, 'Del_End': False, "Memo": "음식 문앞에두고 벨 눌러주세요~!",
                        "Rider": "", "Order_Time": str(str_datetime), 'lan':  lan, 'lng': lng,'new_cus':new_cus,'thumbnail_url':thumbnail_url,
                        'Coupon_Pay':Coupon_Pay,'Coupon_Code':Coupon_Code})
