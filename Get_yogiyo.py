@@ -14,10 +14,9 @@ def get_Yogiyo(category, lat, lng, own_delivery_only):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category={category}&items=120&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
+    url = f"https://www.yogiyo.co.kr/api/v2/restaurants?category={category}&items=120&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
     response = requests.get(url, headers=header)
     Get_json = response.json()
-    Get_json['restaurants']
     return Get_json
     
 def Upload_IMG(image):
