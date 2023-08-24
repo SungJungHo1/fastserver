@@ -172,19 +172,15 @@ def get_Menu(id):
 #     return Get_json
 
 def getItemReviews(id, page, count, menu_id):
-    header = {"x-apikey": 'iphoneap',
-              "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
-    url = f"https://www.yogiyo.co.kr/api/v1/reviews/{id}/?page={page}&count={count}&sort=time&type=&sort_order=desc&menu_id={menu_id}"
-    response = requests.get(url, headers=header)
+    url = f"http://fastfood1144.iptime.org/getItemReviews?id={id}&count={count}&page={page}&menu_id={menu_id}"
+    response = requests.get(url)
     Get_json = response.json()
     return Get_json
 
 
 def get_Review(id, count, page):
-    header = {"x-apikey": 'iphoneap',
-              "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
-    url = f"https://www.yogiyo.co.kr/api/v1/reviews/{id}/?count={count}&only_photo_review=false&page={page}&sort=time"
-    response = requests.get(url, headers=header)
+    url = f"http://fastfood1144.iptime.org/getReviews?id={id}&count={count}&page={page}"
+    response = requests.get(url)
     Get_json = response.json()
     return Get_json
 
