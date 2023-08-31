@@ -198,9 +198,7 @@ def Search_Category(Search, page, lat, lng):
 def Find_Top(lat, lng):
     header = {"x-apikey": 'iphoneap',
               "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
-
-    url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?category=전체&items=60&lat={lat}&lng={lng}&sort_order=desc"
-    # url = f"https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&lat={lat}&lng={lng}&order=review_avg&page=0&search="
+    url = f"https://www.yogiyo.co.kr/api/v2/restaurants?category=전체&items=60&lat={lat}&lng={lng}&sort_order=desc"
     response = requests.get(url, headers=header)
     Get_json = response.json()
     if 'restaurants' in Get_json:
