@@ -203,32 +203,11 @@ def Search_Category(Search, page, lat, lng):
 
 
 def Find_Top(lat, lng):
-    header = {
-        'Accept':'application/json',
-        'Accept-Encoding':'gzip, deflate, br',
-        'Accept-Language':'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6',
-        'Content-Type':'application/x-www-form-urlencoded',
-        'Cookie':'optimizelyEndUserId=oeu1691328069814r0.5700875026528527; _gcl_au=1.1.945741438.1691328070; _fbp=fb.2.1691328070358.1680886685; __cf_bm=TXUFud3xQ7TIvB6NrsJ51DUAsplb1W.nMZPpE5a4WRc-1695732361-0-AVYMEi7KGc30vAXDFHrTfP8Y/Hq2Um5IPdFreLi5bysKizvEVS13gDnEqNEe5N9rYrTisMUNPu46Cg4fSi67+gQ=; sessionid=dfe3f57a99bec206f72e9a46fe0c9019; _gid=GA1.3.1090202431.1695732364; _gat=1; _gat_UA-42635603-4=1; _ga_6KMY7BWK8X=GS1.1.1695732363.5.0.1695732363.60.0.0; _dd_s=rum=2&id=7d4eeaac-ea51-427a-a809-2a86dad5d35c&created=1695732363029&expire=1695733277849; _ga=GA1.3.826850792.1691328070; wcs_bt=s_51119d387dfa:1695732377',
-        'Referer':'https://www.yogiyo.co.kr/mobile/',
-        'Sec-Ch-Ua':'Google Chrome;v=117, Not;A=Brand;v=8, Chromium;v=117',
-        'Sec-Ch-Ua-Mobile':'?0',
-        'Sec-Ch-Ua-Platform':"Windows",
-        'Sec-Fetch-Dest':'empty',
-        'Sec-Fetch-Mode':'cors',
-        'Sec-Fetch-Site':'same-origin',
-        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
-        'X-Apikey':'iphoneap',
-        'X-Apisecret':'fe5183cc3dea12bd0ce299cf110a75a2',
-    }
-    url = f"https://www.yogiyo.co.kr/api/v2/restaurants?category=전체&items=60&lat={lat}&lng={lng}&sort_order=desc"
-    response = httpx.get(url, headers=header,verify=False)
+    url = f"http://fastfood1144.iptime.org/popularMenu?lat={lat}&lng={lng}"
+    response = requests.get(url)
     Get_json = response.json()
-    if 'restaurants' in Get_json:
-        Return_Data = {'restaurants':Get_json['restaurants'][0:15]}
-    else :
-        Return_Data = {'restaurants': []}
-    return Return_Data
 
+    return Get_json
 
 def Find_User_Profile(UserId):
     Line_tokens = f"Bearer {Access_Token}"
