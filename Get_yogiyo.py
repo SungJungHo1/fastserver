@@ -11,13 +11,20 @@ import httpx
 
 
 def get_Yogiyo(category, lat, lng, own_delivery_only):
-    header = {"x-apikey": 'iphoneap',
-              "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
+    # header = {"x-apikey": 'iphoneap',
+    #           "x-apisecret": 'fe5183cc3dea12bd0ce299cf110a75a2'}
 
-    url = f"https://www.yogiyo.co.kr/api/v2/restaurants?category={category}&items=120&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
-    response = requests.get(url, headers=header)
+    # url = f"https://www.yogiyo.co.kr/api/v2/restaurants?category={category}&items=120&lat={lat}&lng={lng}&order=rank&own_delivery_only={own_delivery_only}&order=distance&page=0&search="
+    # response = requests.get(url, headers=header)
+    # Get_json = response.json()
+    # return Get_json
+
+    url = f"http://fastfood1144.iptime.org/getStores?category={category}&lat={lat}&lng={lng}&own_delivery_only={own_delivery_only}"
+    response = requests.get(url)
     Get_json = response.json()
     return Get_json
+    
+    
     
 def Upload_IMG(image):
 
